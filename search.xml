@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>日记</title>
+      <link href="/2023/08/22/%E6%97%A5%E8%AE%B0/"/>
+      <url>/2023/08/22/%E6%97%A5%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p>今天事情比较多，今日战绩：图床搭建完成。</p><p>下班！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>My First Post</title>
+      <link href="/2023/08/20/My-First-Post/"/>
+      <url>/2023/08/20/My-First-Post/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to my blog.</p><p>搭建了一天，终于上线了。</p><p>暑假开始的时候有一个Plan，完成了个P,因为lan。</p><p>后面会随缘更新，更新内容也不确定。凑合着看吧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hello </tag>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>My New Post</title>
+      <link href="/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/"/>
+      <url>/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/</url>
+      
+        <content type="html"><![CDATA[<p>#入门</p><p>练习时长：八周（3又五分之一坤周）</p><h1 id="web开发入门（两周）"><a href="#web开发入门（两周）" class="headerlink" title="web开发入门（两周）"></a>web开发入门（两周）</h1><p><strong>前端语言</strong>:  HTML+CSS+javascript<br>建议时长： 三天 （JS要求高，dom树看懂）</p><p><strong>脚本语言</strong> : python+网络基础和HTTP协议<br>建议时长：七天 </p><p><strong>后端语言</strong>:PHP+SQL+MySQL数据库<br>建议时长：三天（第一门后端语言建议php，因为比较简单，当然你也可以直接入手其他的语言java，go之类的）</p><p><strong>学习方式</strong>： 菜鸟教程进行速通上面的语言学习。</p><p><strong>学习任务</strong>：注册登录页面和登录成功展示静态百度页面</p><h1 id="web渗透入门"><a href="#web渗透入门" class="headerlink" title="web渗透入门"></a>web渗透入门</h1><h2 id="一、信息收集（三天）"><a href="#一、信息收集（三天）" class="headerlink" title="一、信息收集（三天）"></a>一、信息收集（三天）</h2><p>如子域名收集、备案查询、github 敏感信息查找等等，知道的方式越多，收集的信息也越多。<br>详细文章： <a href="https://www.freebuf.com/articles/web/340195.html">https://www.freebuf.com/articles/web/340195.html</a> </p><p>利用一些工具减轻工作量：</p><ol><li>灯塔ARL   <a href="https://github.com/TophantTechnology/ARL">https://github.com/TophantTechnology/ARL</a><br>魔改： <a href="https://mp.weixin.qq.com/s/ITvbc9GwqGihUECfRv66Aw">https://mp.weixin.qq.com/s/ITvbc9GwqGihUECfRv66Aw</a></li><li>水泽  <a href="https://github.com/0x727/ShuiZe_0x727">https://github.com/0x727/ShuiZe_0x727</a></li></ol><h2 id="二、常见漏洞利用（三周）"><a href="#二、常见漏洞利用（三周）" class="headerlink" title="二、常见漏洞利用（三周）"></a>二、常见漏洞利用（三周）</h2><p>对于入门级的渗透测试，可以先掌握 OWASP Top 10 的漏洞、如最常见的 SQL 注入漏洞、XSS 漏洞、文件上传漏洞、越权漏洞、弱口令等。</p><p>看一些报告：<br>edusrc:闲鱼上或者自己搜一搜，公众号也有很多文章<br>乌云： <a href="https://wy.zone.ci/">https://wy.zone.ci/</a><br>h1：同样建议搜一搜</p><h2 id="三、渗透测试常用工具使用。-两周"><a href="#三、渗透测试常用工具使用。-两周" class="headerlink" title="三、渗透测试常用工具使用。(两周)"></a>三、渗透测试常用工具使用。(两周)</h2><p>对于入门级的渗透测试，会使用 nmap、Burpsuite、Kali Linux 、sqlmap 就基本足够了。</p><p>靶场：</p><ol><li>pikachu： <a href="https://github.com/zhuifengshaonianhanlu/pikachu">https://github.com/zhuifengshaonianhanlu/pikachu</a></li><li>vulhub： <a href="https://blog.csdn.net/weixin_45744814/article/details/120185420?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168896524816782425130413%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168896524816782425130413&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120185420-null-null.142%5Ev88%5Econtrol_2,239%5Ev2%5Einsert_chatgpt&utm_term=vulhub&spm=1018.2226.3001.4187">https://blog.csdn.net/weixin_45744814/article/details/120185420?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168896524816782425130413%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=168896524816782425130413&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120185420-null-null.142^v88^control_2,239^v2^insert_chatgpt&amp;utm_term=vulhub&amp;spm=1018.2226.3001.4187</a> </li><li>tryhackme: <a href="https://tryhackme.com/">https://tryhackme.com/</a> (推荐)</li><li>hackthebox： <a href="https://www.hackthebox.com/">https://www.hackthebox.com/</a></li></ol><p>搭建自己的军火库🧰：</p><ol><li>chorme插件 <a href="https://zhuanlan.zhihu.com/p/257021053">https://zhuanlan.zhihu.com/p/257021053</a></li><li>翻墙🧱： v2ray或者clashforwindows +✈️机场（点到为止）</li><li>渗透工具:自己囤一囤，<del>肖佬说:(不行就自己开一个)。</del></li><li>武装bp：<br>         1.  <a href="https://mp.weixin.qq.com/s/vGAOO0ZLXd55FTaGkiOILg">https://mp.weixin.qq.com/s/vGAOO0ZLXd55FTaGkiOILg</a><br>         2. <a href="https://mp.weixin.qq.com/s/6VsFwJO4Q5T0AomngEh6Wg">https://mp.weixin.qq.com/s/6VsFwJO4Q5T0AomngEh6Wg</a><br>         3. <a href="https://mp.weixin.qq.com/s/zGtiHhA5udqQOps8nxu1-g">https://mp.weixin.qq.com/s/zGtiHhA5udqQOps8nxu1-g</a></li><li>安装kali： <a href="https://blog.csdn.net/m0_72984458/article/details/131643173?utm_source=miniapp_weixin">https://blog.csdn.net/m0_72984458/article/details/131643173?utm_source=miniapp_weixin</a>  <del>（肖佬说： “算了，我自己写一篇吧”）</del></li></ol><h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><p>社区：</p><ol><li>先知社区： <a href="https://xz.aliyun.com/">https://xz.aliyun.com/</a></li><li>网安：         <a href="https://www.wangan.com/">https://www.wangan.com/</a></li><li>freebuf:       <a href="https://www.freebuf.com/">https://www.freebuf.com/</a></li><li>奇安信攻防社区： <a href="https://forum.butian.net/">https://forum.butian.net/</a></li></ol><p>导航：</p><ol><li>黑客街： <a href="https://www.hackjie.com/">https://www.hackjie.com/</a></li></ol><p>公众号： </p><ol><li>鹏组安全</li><li>菜鸟学信安</li><li>李白你好</li></ol><p>参考文章：<br><a href="https://blog.csdn.net/qq_28205153/article/details/123941798">https://blog.csdn.net/qq_28205153/article/details/123941798</a><br><a href="https://cloud.tencent.com/developer/article/2102308">https://cloud.tencent.com/developer/article/2102308</a></p><h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><ul><li><p>建议0基础的同学先从web简单开发开始学。</p></li><li><p>注意⚠️：每个阶段标注的时间可以理解为我乱写的，实际上有很多碎的东西需要去学，还有一些知识看起来东西很多，但是实际时间花销其实不多，所以时间上出入较大，不必理会。</p></li><li><p>找到适合自己的学习路线和方式</p></li><li><p>使用ai提高效率</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 渗透测试 </tag>
+            
+            <tag> 入门 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/08/20/hello-world/"/>
+      <url>/2023/08/20/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>

@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>渗透测试入门 - glan&#39;s blog</title>
+    <title>陇剑杯 2021 misc 简单日志分析 - glan&#39;s blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="hacker Obsidian ctfer glan 信息安全 网络安全 blog 个人成长日记,"> 
-    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,#入门
-练习时长：八周（3又五分之一坤周）
-web开发入门（两周）前端语言:  HTML+CSS+javascript建议时长： 三天 （JS要求高，dom树看懂）
-脚本语言 : python+网络,"> 
+    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,陇剑杯 2021 简单日志分析（问1）题目描述：
+
+某应用程序被攻击，请分析日志后作答：
+黑客攻击的参数是______。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&amp;#123;&amp;#1,"> 
     <meta name="author" content="glan"> 
     <link rel="alternative" href="atom.xml" title="glan&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -77,7 +77,7 @@ web开发入门（两周）前端语言:  HTML+CSS+javascript建议时长： 三
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://g1an123.github.io">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">渗透测试入门</h3>
+        <h3 class="subtitle">陇剑杯 2021 misc 简单日志分析</h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -107,25 +107,25 @@ web开发入门（两周）前端语言:  HTML+CSS+javascript建议时长： 三
         <div class="else">
             <p class="animated fadeInDown">
                 
-                <a href="/categories/渗透测试"><b>「
-                    </b>渗透测试<b> 」</b></a>
+                <a href="/categories/ctf"><b>「
+                    </b>CTF<b> 」</b></a>
                 
-                八月 20, 2023
+                八月 24, 2023
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/" title="渗透测试入门" class="">渗透测试入门</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="陇剑杯 2021 misc 简单日志分析" class="">陇剑杯 2021 misc 简单日志分析</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    5k
+                    1.4k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    5 mins.
+                    1 mins.
                 </span>
                 
                 
@@ -138,7 +138,7 @@ web开发入门（两周）前端语言:  HTML+CSS+javascript建议时长： 三
             </p>
             
             
-            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li></ul>
             
         </div>
     </div>
@@ -159,65 +159,26 @@ web开发入门（两周）前端语言:  HTML+CSS+javascript建议时长： 三
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <p>#入门</p>
-<p>练习时长：八周（3又五分之一坤周）</p>
-<h1 id="web开发入门（两周）"><a href="#web开发入门（两周）" class="headerlink" title="web开发入门（两周）"></a>web开发入门（两周）</h1><p><strong>前端语言</strong>:  HTML+CSS+javascript<br>建议时长： 三天 （JS要求高，dom树看懂）</p>
-<p><strong>脚本语言</strong> : python+网络基础和HTTP协议<br>建议时长：七天 </p>
-<p><strong>后端语言</strong>:PHP+SQL+MySQL数据库<br>建议时长：三天（第一门后端语言建议php，因为比较简单，当然你也可以直接入手其他的语言java，go之类的）</p>
-<p><strong>学习方式</strong>： 菜鸟教程进行速通上面的语言学习。</p>
-<p><strong>学习任务</strong>：注册登录页面和登录成功展示静态百度页面</p>
-<h1 id="web渗透入门"><a href="#web渗透入门" class="headerlink" title="web渗透入门"></a>web渗透入门</h1><h2 id="一、信息收集（三天）"><a href="#一、信息收集（三天）" class="headerlink" title="一、信息收集（三天）"></a>一、信息收集（三天）</h2><p>如子域名收集、备案查询、github 敏感信息查找等等，知道的方式越多，收集的信息也越多。<br>详细文章： <a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/340195.html">https://www.freebuf.com/articles/web/340195.html</a> </p>
-<p>利用一些工具减轻工作量：</p>
-<ol>
-<li>灯塔ARL   <a target="_blank" rel="noopener" href="https://github.com/TophantTechnology/ARL">https://github.com/TophantTechnology/ARL</a><br>魔改： <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ITvbc9GwqGihUECfRv66Aw">https://mp.weixin.qq.com/s/ITvbc9GwqGihUECfRv66Aw</a></li>
-<li>水泽  <a target="_blank" rel="noopener" href="https://github.com/0x727/ShuiZe_0x727">https://github.com/0x727/ShuiZe_0x727</a></li>
-</ol>
-<h2 id="二、常见漏洞利用（三周）"><a href="#二、常见漏洞利用（三周）" class="headerlink" title="二、常见漏洞利用（三周）"></a>二、常见漏洞利用（三周）</h2><p>对于入门级的渗透测试，可以先掌握 OWASP Top 10 的漏洞、如最常见的 SQL 注入漏洞、XSS 漏洞、文件上传漏洞、越权漏洞、弱口令等。</p>
-<p>看一些报告：<br>edusrc:闲鱼上或者自己搜一搜，公众号也有很多文章<br>乌云： <a target="_blank" rel="noopener" href="https://wy.zone.ci/">https://wy.zone.ci/</a><br>h1：同样建议搜一搜</p>
-<h2 id="三、渗透测试常用工具使用。-两周"><a href="#三、渗透测试常用工具使用。-两周" class="headerlink" title="三、渗透测试常用工具使用。(两周)"></a>三、渗透测试常用工具使用。(两周)</h2><p>对于入门级的渗透测试，会使用 nmap、Burpsuite、Kali Linux 、sqlmap 就基本足够了。</p>
-<p>靶场：</p>
-<ol>
-<li>pikachu： <a target="_blank" rel="noopener" href="https://github.com/zhuifengshaonianhanlu/pikachu">https://github.com/zhuifengshaonianhanlu/pikachu</a></li>
-<li>vulhub： <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45744814/article/details/120185420?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168896524816782425130413%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168896524816782425130413&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120185420-null-null.142%5Ev88%5Econtrol_2,239%5Ev2%5Einsert_chatgpt&utm_term=vulhub&spm=1018.2226.3001.4187">https://blog.csdn.net/weixin_45744814/article/details/120185420?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168896524816782425130413%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=168896524816782425130413&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120185420-null-null.142^v88^control_2,239^v2^insert_chatgpt&amp;utm_term=vulhub&amp;spm=1018.2226.3001.4187</a> </li>
-<li>tryhackme: <a target="_blank" rel="noopener" href="https://tryhackme.com/">https://tryhackme.com/</a> (推荐)</li>
-<li>hackthebox： <a target="_blank" rel="noopener" href="https://www.hackthebox.com/">https://www.hackthebox.com/</a></li>
-</ol>
-<p>搭建自己的军火库🧰：</p>
-<ol>
-<li>chorme插件 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/257021053">https://zhuanlan.zhihu.com/p/257021053</a></li>
-<li>翻墙🧱： v2ray或者clashforwindows +✈️机场（点到为止）</li>
-<li>渗透工具:自己囤一囤，<del>肖佬说:(不行就自己开一个)。</del></li>
-<li>武装bp：<br>         1.  <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/vGAOO0ZLXd55FTaGkiOILg">https://mp.weixin.qq.com/s/vGAOO0ZLXd55FTaGkiOILg</a><br>         2. <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/6VsFwJO4Q5T0AomngEh6Wg">https://mp.weixin.qq.com/s/6VsFwJO4Q5T0AomngEh6Wg</a><br>         3. <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/zGtiHhA5udqQOps8nxu1-g">https://mp.weixin.qq.com/s/zGtiHhA5udqQOps8nxu1-g</a></li>
-<li>安装kali： <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72984458/article/details/131643173?utm_source=miniapp_weixin">https://blog.csdn.net/m0_72984458/article/details/131643173?utm_source=miniapp_weixin</a>  <del>（肖佬说： “算了，我自己写一篇吧”）</del></li>
-</ol>
-<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><p>社区：</p>
-<ol>
-<li>先知社区： <a target="_blank" rel="noopener" href="https://xz.aliyun.com/">https://xz.aliyun.com/</a></li>
-<li>网安：         <a target="_blank" rel="noopener" href="https://www.wangan.com/">https://www.wangan.com/</a></li>
-<li>freebuf:       <a target="_blank" rel="noopener" href="https://www.freebuf.com/">https://www.freebuf.com/</a></li>
-<li>奇安信攻防社区： <a target="_blank" rel="noopener" href="https://forum.butian.net/">https://forum.butian.net/</a></li>
-</ol>
-<p>导航：</p>
-<ol>
-<li>黑客街： <a target="_blank" rel="noopener" href="https://www.hackjie.com/">https://www.hackjie.com/</a></li>
-</ol>
-<p>公众号： </p>
-<ol>
-<li>鹏组安全</li>
-<li>菜鸟学信安</li>
-<li>李白你好</li>
-</ol>
-<p>参考文章：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28205153/article/details/123941798">https://blog.csdn.net/qq_28205153/article/details/123941798</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2102308">https://cloud.tencent.com/developer/article/2102308</a></p>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><ul>
-<li><p>建议0基础的同学先从web简单开发开始学。</p>
-</li>
-<li><p>注意⚠️：每个阶段标注的时间可以理解为我乱写的，实际上有很多碎的东西需要去学，还有一些知识看起来东西很多，但是实际时间花销其实不多，所以时间上出入较大，不必理会。</p>
-</li>
-<li><p>找到适合自己的学习路线和方式</p>
-</li>
-<li><p>使用ai提高效率</p>
-</li>
-</ul>
+            <h2 id="陇剑杯-2021-简单日志分析（问1）"><a href="#陇剑杯-2021-简单日志分析（问1）" class="headerlink" title="陇剑杯 2021 简单日志分析（问1）"></a>陇剑杯 2021 简单日志分析（问1）</h2><pre><code>题目描述：
+
+某应用程序被攻击，请分析日志后作答：
+黑客攻击的参数是______。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&#123;&#125;格式提交。
+</code></pre>
+<p>既然问的是参数，而且日志中基本都是GET请求，那么我们直接搜索 <code>=</code> 看看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2013.03.18.png"></p>
+<p>得到user参数。</p>
+<h2 id="陇剑杯-2021-简单日志分析（问2）"><a href="#陇剑杯-2021-简单日志分析（问2）" class="headerlink" title="陇剑杯 2021 简单日志分析（问2）"></a>陇剑杯 2021 简单日志分析（问2）</h2><pre><code>题目描述：
+
+某应用程序被攻击，请分析日志后作答：
+黑客查看的秘密文件的绝对路径是_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2013.07.21.png"><br>我们通过user参数传入的payload进行base64解密发现文件<br><code>/Th4s_IS_VERY_Import_Fi1e</code></p>
+<h2 id="陇剑杯-2021-简单日志分析（问3）"><a href="#陇剑杯-2021-简单日志分析（问3）" class="headerlink" title="陇剑杯 2021 简单日志分析（问3）"></a>陇剑杯 2021 简单日志分析（问3）</h2><pre><code>题目描述：
+
+某应用程序被攻击，请分析日志后作答：
+黑客反弹shell的ip和端口是_____________。（格式使用“ip:端口&quot;，例如127.0.0.1:2333）。得到的flag请使用NSSCTF&#123;&#125;格式提交。
+</code></pre>
+<p>一样的思路，往下找还有一个payload。解密分析看看<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2013.11.08.png"><br>就可以拿到ip和端口啦。<br>tip：<br>要注意先进行url解密。<br>在进行base64解密</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -287,7 +248,7 @@ web开发入门（两周）前端语言:  HTML+CSS+javascript建议时长： 三
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#web%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%A4%E5%91%A8%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">web开发入门（两周）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web%E6%B8%97%E9%80%8F%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">web渗透入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%EF%BC%88%E4%B8%89%E5%A4%A9%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">一、信息收集（三天）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%EF%BC%88%E4%B8%89%E5%91%A8%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">二、常见漏洞利用（三周）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E3%80%82-%E4%B8%A4%E5%91%A8"><span class="toc-number">2.3.</span> <span class="toc-text">三、渗透测试常用工具使用。(两周)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="toc-number">2.4.</span> <span class="toc-text">学习资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">写在最后</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%87%E5%89%91%E6%9D%AF-2021-%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E9%97%AE1%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">陇剑杯 2021 简单日志分析（问1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%87%E5%89%91%E6%9D%AF-2021-%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E9%97%AE2%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">陇剑杯 2021 简单日志分析（问2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%87%E5%89%91%E6%9D%AF-2021-%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E9%97%AE3%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">陇剑杯 2021 简单日志分析（问3）</span></a></li></ol>
                 </div>
             </div>
             

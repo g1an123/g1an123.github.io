@@ -4,9 +4,38 @@
   
     
     <entry>
-      <title>陇剑杯 2021 misc</title>
-      <link href="/2023/08/23/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc/"/>
-      <url>/2023/08/23/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc/</url>
+      <title>陇剑杯 2021 misc 日志分析</title>
+      <link href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
+      <url>/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h2 id="陇剑杯-2021-日志分析（问1）"><a href="#陇剑杯-2021-日志分析（问1）" class="headerlink" title="陇剑杯 2021 日志分析（问1）"></a>陇剑杯 2021 日志分析（问1）</h2><pre><code>题目描述：单位某应用程序被攻击，请分析日志，进行作答：网络存在源码泄漏，源码文件名是_____________。(请提交带有文件后缀的文件名，例如x.txt)。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>打开日志文件，不知道用哪个软件比较好分析，还请各位大佬指点。<br>我直接用vscode打开看看<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2012.39.08.png"><br>发现主要信息集中于请求路径和状态码。<br>大部分都是404，直接全局搜索200看看</p><p>大概下半段就可以看到请求<a href="http://www.zip时为200/">www.zip时为200</a>.<br>下班！</p><h2 id="陇剑杯-2021-日志分析（问2）"><a href="#陇剑杯-2021-日志分析（问2）" class="headerlink" title="陇剑杯 2021 日志分析（问2）"></a>陇剑杯 2021 日志分析（问2）</h2><pre><code>题目描述：单位某应用程序被攻击，请分析日志，进行作答：分析攻击流量，黑客往/tmp目录写入一个文件，文件名为_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2012.46.43.png"><br>全局搜索一下tmp，发现有<br><code>/?filename=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Ftmp%2Fsess_car&amp;content=func%7CN%3Bfiles%7Ca%3A2%3A%7Bs%3A8%3A%22filename%22%3Bs%3A16%3A%22.%2Ffiles%2Ffilename%22%3Bs%3A20%3A%22call_user_func_array%22%3Bs%3A28%3A%22.%2Ffiles%2Fcall_user_func_array%22%3B%7Dpaths%7Ca%3A1%3A%7Bs%3A5%3A%22%2Fflag%22%3Bs%3A13%3A%22SplFileObject%22%3B%7D</code><br>解一下码好看一点。<br><code>/?filename=../../../../../../../../../../../../../../../../../tmp/sess_car&amp;content=func|N;files|a:2:&#123;s:8:&quot;filename&quot;;s:16:&quot;./files/filename&quot;;s:20:&quot;call_user_func_array&quot;;s:28:&quot;./files/call_user_func_array&quot;;&#125;paths|a:1:&#123;s:5:&quot;/flag&quot;;s:13:&quot;SplFileObject&quot;;&#125;</code></p><p>得到sess_car.</p><h2 id="陇剑杯-2021-日志分析（问3）"><a href="#陇剑杯-2021-日志分析（问3）" class="headerlink" title="陇剑杯 2021 日志分析（问3）"></a>陇剑杯 2021 日志分析（问3）</h2><pre><code>题目描述：单位某应用程序被攻击，请分析日志，进行作答：分析攻击流量，黑客使用的是______类读取了秘密文件。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>上一题中解码出来的payload就能看出时SplFileObject类进行读取。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> misc </tag>
+            
+            <tag> 流量分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>陇剑杯 2021 misc webshell</title>
+      <link href="/2023/08/23/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20webshell/"/>
+      <url>/2023/08/23/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20webshell/</url>
       
         <content type="html"><![CDATA[<h2 id="陇剑杯-2021-webshell（问1）"><a href="#陇剑杯-2021-webshell（问1）" class="headerlink" title="陇剑杯 2021  webshell（问1）"></a>陇剑杯 2021  webshell（问1）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客登录系统使用的密码是_____________。。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>题目描述说是登录系统，根据日常经验，一般登录操作使用的都是POST请求，于是我们直接在流量包中搜索POST请求看看。</p><pre><code>http.request.method==POST</code></pre><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.32.34.png"><br>然后追踪流看看，运气比较好第一个就是。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.35.35.png"><br>交差下班。</p><h2 id="陇剑杯-2021webshell（问2）"><a href="#陇剑杯-2021webshell（问2）" class="headerlink" title="陇剑杯 2021webshell（问2）"></a>陇剑杯 2021webshell（问2）</h2><pre><code>单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客修改了一个日志文件，文件的绝对路径为_____________。（请确认绝对路径后再提交）。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>关键词：日志。直接搜索.log看看.<br>发现东西有点多。<br>需要再想个法子缩小范围。<br>想到既然是通过挂马进行修改，那么看看他的🐎子是啥类型的，我们就可以通过请求类型进行进一步缩小范围。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.42.47.png"><br>发现一列1.php，应该就是🐎子了，再看一眼确定没错，是post马子。</p><p>然后就一个个看，第一个就是。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.49.21.png"><br>但是发现只是相对路径，所以还要结合传马的位置拼接得到：<br><code>/var/www/html/data/Runtime/Logs/Home/21_08_07.log</code></p><h2 id="陇剑杯-2021webshell（问3）"><a href="#陇剑杯-2021webshell（问3）" class="headerlink" title="陇剑杯 2021webshell（问3）"></a>陇剑杯 2021webshell（问3）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客获取webshell之后，权限是______？得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>看到权限，可能会想到通过whoami这些命令进行过滤，但是出来的东西有点多。<br>我们不妨直接猜一手，因为一般权限无非root 和www-data.<br>得到是www-data</p><h2 id="陇剑杯-2021webshell（问4）"><a href="#陇剑杯-2021webshell（问4）" class="headerlink" title="陇剑杯 2021webshell（问4）"></a>陇剑杯 2021webshell（问4）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客写入的webshell文件名是_____________。(请提交带有文件后缀的文件名，例如x.txt)。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>这一问就不用说了，前面就已经看出来1.php就是马子了。<br>要是非问为啥，那原因就是看他流量特征，一眼蚁剑<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2023.04.38.png"></p><p><a href="https://www.freebuf.com/articles/network/204796.html">常见webshell客户端流量特征</a></p><h2 id="陇剑杯-2021webshell（问5）"><a href="#陇剑杯-2021webshell（问5）" class="headerlink" title="陇剑杯 2021webshell（问5）"></a>陇剑杯 2021webshell（问5）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客上传的代理工具客户端名字是_____________。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>这里我一开始是想找上传的哪个数据包的，后来误打误撞发现了一个类似于 <code>ls</code> 命令的返回包。发现了frpc.ini<br>于是直接就能得出就是frpc了。</p><p>还有正常解法，就是看看比较大的包，大概率就是上传的包了。</p><h2 id="陇剑杯-2021webshell（问6）"><a href="#陇剑杯-2021webshell（问6）" class="headerlink" title="陇剑杯 2021webshell（问6）"></a>陇剑杯 2021webshell（问6）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客代理工具的回连服务端IP是_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。开启环境0</code></pre><p>这题我目前也不是很清楚，最后找到frpc.ini文件的时候是需要hex解码的。<br>最后就得到反连的ip是192.168.239.123</p><h2 id="陇剑杯-2021webshell（问7）"><a href="#陇剑杯-2021webshell（问7）" class="headerlink" title="陇剑杯 2021webshell（问7）"></a>陇剑杯 2021webshell（问7）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客的socks5的连接账号、密码是______。（中间使用#号隔开，例如admin#passwd）。得到的flag请使用NSSCTF&#123;&#125;格式提交。开启环境0</code></pre><p>都在hex解密之后的frpc.ini中<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2000.16.24.png"></p>]]></content>
       

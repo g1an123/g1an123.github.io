@@ -182,7 +182,7 @@
 <h3 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h3><p>开局一个登录框，弱口令是试一下，得到：<br>admin:admin</p>
 <h3 id="查看源码-传参"><a href="#查看源码-传参" class="headerlink" title="查看源码+传参"></a>查看源码+传参</h3><p>跳转后页面看看源码得到提示。<br><code>你给我hint我给你hint</code><br>猜测传参hint。</p>
 <h3 id="php审计"><a href="#php审计" class="headerlink" title="php审计"></a>php审计</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.55.11.png"></p>
-<pre><code>&lt;?php  
+<pre><code class="php">&lt;?php  
 error_reporting(0);  
 require_once(&#39;/flag.php&#39;);   
 if(isset($_GET[&#39;hint&#39;]))&#123;    highlight_file(__FILE__);  
@@ -208,7 +208,7 @@ if ($hash === md5($flag . $word))
       echo &quot; Wooooooo!You cracked the md5. Here is your flag &quot; . $flag;  
 ?&gt;
 </code></pre>
-<pre><code>大概有三层判断：
+<pre><code class="php">大概有三层判断：
 1`.if($a !== $b &amp; md5($a) === md5($b))&#123;`
 2`.`if (preg_match(&#39;/^1952(.*?)NUAA$/&#39;, $word))&#123;  
     if(intval($word) === intval(strrev($word)))&#123;``
@@ -234,7 +234,7 @@ if ($hash === md5($flag . $word))
 <h4 id="php伪随机数漏洞"><a href="#php伪随机数漏洞" class="headerlink" title="php伪随机数漏洞"></a>php伪随机数漏洞</h4><p>多次刷新发现随机数始终相同，于是猜测肯定使用的同一个种子。漏洞请往下翻翻。</p>
 <h3 id="爆破种子"><a href="#爆破种子" class="headerlink" title="爆破种子"></a>爆破种子</h3><p>爆破种子工具包 <a href=https://github.com/openwall/php_mt_seed>php_mt_seed</a><br>使用教程看看README就行。</p>
 <h3 id="漏洞了解"><a href="#漏洞了解" class="headerlink" title="漏洞了解"></a>漏洞了解</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2021.21.05.png"></p>
-<pre><code>&lt;?php  
+<pre><code class="php">&lt;?php  
 mt_srand(5201314);  
 echo mt_rand().PHP_EOL;  
 echo mt_rand().PHP_EOL;  

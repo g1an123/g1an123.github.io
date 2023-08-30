@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>sharkctf_2023 - glan&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="hacker Obsidian ctfer glan 信息安全 网络安全 blog 个人成长日记,"> 
+    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,暑假事情有点多，没啥时间写，只写完了web题，写篇wp水水博客。
+
+彩蛋1azy_fish加了彩蛋，找一找？不用爆破（把服务器日坏了就不好玩了
+敏感路径这题刚开始看以为是F12题，一直没找到，后来翻,"> 
+    <meta name="author" content="glan"> 
+    <link rel="alternative" href="atom.xml" title="glan&#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">glan&#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="https://g1an123.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">sharkctf_2023</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/ctf"><b>「
+                    </b>CTF<b> 」</b></a>
+                
+                八月 22, 2023
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2023/08/22/sharkctf_2023/" title="sharkctf_2023" class="">sharkctf_2023</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    10k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    9 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/web/" rel="tag">web</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/writeup/" rel="tag">writeup</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <p><code>暑假事情有点多，没啥时间写，只写完了web题，写篇wp水水博客。</code></p>
+<hr>
+<h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>1azy_fish加了彩蛋，找一找？不用爆破（把服务器日坏了就不好玩了</p>
+<h3 id="敏感路径"><a href="#敏感路径" class="headerlink" title="敏感路径"></a>敏感路径</h3><p>这题刚开始看以为是F12题，一直没找到，后来翻插件发现有敏感目录 &#x2F;goat。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.09.03.png"><br>推荐一下这个插件：findsomething（尊嘟很好用）</p>
+<h3 id="F12查看网页源码"><a href="#F12查看网页源码" class="headerlink" title="F12查看网页源码"></a>F12查看网页源码</h3><p>直接拼接就是一个F12题了，F12查看源码得到flag<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.07.01.png"></p>
+<h2 id="Ez-http"><a href="#Ez-http" class="headerlink" title="Ez_http"></a>Ez_http</h2><p>VidocQwQ说http好简单，我们一起学习吧。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.12.24.png"></p>
+<h3 id="XFF头ip绕过"><a href="#XFF头ip绕过" class="headerlink" title="XFF头ip绕过"></a>XFF头ip绕过</h3><p>使用hackbar进行操作添加XFF头。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.15.43.png"></p>
+<h3 id="Referer来源绕过"><a href="#Referer来源绕过" class="headerlink" title="Referer来源绕过"></a>Referer来源绕过</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.17.39.png"></p>
+<h3 id="UA绕过"><a href="#UA绕过" class="headerlink" title="UA绕过"></a>UA绕过</h3><p>UA头一般用来确定浏览器类型<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.19.12.png"></p>
+<h2 id="view-source"><a href="#view-source" class="headerlink" title="view source"></a>view source</h2><p>VidocQwQ邀请你一起打游戏辣，2048都会吧？</p>
+<h3 id="查看源码"><a href="#查看源码" class="headerlink" title="查看源码"></a>查看源码</h3><p>看题目意思应该是要查看源码，但是禁用了F12和右键。<br>不过可以通过谷歌浏览器的设置打开开发者工具<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.24.19.png"><br>源码发现提示hint.php<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.25.33.png"></p>
+<h3 id="源码查询发现路由及参数"><a href="#源码查询发现路由及参数" class="headerlink" title="源码查询发现路由及参数"></a>源码查询发现路由及参数</h3><p>直接拼接访问的话发现什么也没有。<br>于是回到前面查看源码，但是代码有点长。<br>于是猜测hint.php是否用以传递成绩参数之类的，全局搜索看看是否有暴露相关路由。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.30.16.png"><br>发现相关源码，于是直接可以拼接获得flag<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.32.50.png"></p>
+<h2 id="Ez-eval"><a href="#Ez-eval" class="headerlink" title="Ez_eval"></a>Ez_eval</h2><p>VidocQwQ写了个php，留下了一个函数，你们知道怎么使用吗？</p>
+<h3 id="开局送源码"><a href="#开局送源码" class="headerlink" title="开局送源码"></a>开局送源码</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.34.04.png"><br>审计发现通过word传参命令执行，过滤flag字段。</p>
+<h3 id="通配符绕过"><a href="#通配符绕过" class="headerlink" title="通配符绕过"></a>通配符绕过</h3><p><code>?word=system(&quot;cat /f*&quot;);</code><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.37.01.png"></p>
+<h2 id="Ez-SQL"><a href="#Ez-SQL" class="headerlink" title="Ez_SQL"></a>Ez_SQL</h2><h3 id="手工做法："><a href="#手工做法：" class="headerlink" title="手工做法："></a>手工做法：</h3><h4 id="查看源码有提示"><a href="#查看源码有提示" class="headerlink" title="查看源码有提示"></a>查看源码有提示</h4><p>提示将select替换为空。<br>绕过办法：分拆绕过，过滤时重组形成payload</p>
+<h4 id="构造语句"><a href="#构造语句" class="headerlink" title="构造语句"></a>构造语句</h4><p>先order by 确定一下字段数，<br><code>username=123&#39;order by 4--+</code><br>发现字段为4。使用hackerbar辅助构造payload<br><code>username=123&#39;union selselectect group_concat(schema_name),2,3,4 from information_schema.schemata-+</code><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.46.22.png"><br>然后就使用相同方式构造注入语句拿下flag。</p>
+<h3 id="工具梭哈"><a href="#工具梭哈" class="headerlink" title="工具梭哈"></a>工具梭哈</h3><p>sqlmap一把梭，具体使用就自己查一查了哈。</p>
+<h2 id="哈斯哈斯哈斯（bt"><a href="#哈斯哈斯哈斯（bt" class="headerlink" title="哈斯哈斯哈斯（bt"></a>哈斯哈斯哈斯（bt</h2><p>1azy_fish觉得md5很好用，就用一堆md5保护了flag，使它不被坏人拿走。</p>
+<h3 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h3><p>开局一个登录框，弱口令是试一下，得到：<br>admin:admin</p>
+<h3 id="查看源码-传参"><a href="#查看源码-传参" class="headerlink" title="查看源码+传参"></a>查看源码+传参</h3><p>跳转后页面看看源码得到提示。<br><code>你给我hint我给你hint</code><br>猜测传参hint。</p>
+<h3 id="php审计"><a href="#php审计" class="headerlink" title="php审计"></a>php审计</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.55.11.png"></p>
+<pre><code class="php">&lt;?php  
+error_reporting(0);  
+require_once(&#39;/flag.php&#39;);   
+if(isset($_GET[&#39;hint&#39;]))&#123;    highlight_file(__FILE__);  
+&#125;  
+else&#123;  
+    include_once &quot;loginok.html&quot;;  
+&#125;  
+$a=$_GET[&#39;a&#39;];  
+$b=$_GET[&#39;b&#39;];  
+$hash=$_COOKIE[&#39;hash&#39;];  
+$word=$_POST[&#39;word&#39;];  
+if($a !== $b &amp; md5($a) === md5($b))&#123;  
+    echo &#39; WOW,u are so cool &#39;;  
+    echo strlen($flag);  
+&#125;  
+if (preg_match(&#39;/^1952(.*?)NUAA$/&#39;, $word))&#123;  
+    if(intval($word) === intval(strrev($word)))&#123;  
+        echo &quot; 宝贝,flag快出来了哦,加油捏 &quot;;  
+        echo md5($flag);  
+    &#125;  
+&#125;  
+if ($hash === md5($flag . $word))  
+      echo &quot; Wooooooo!You cracked the md5. Here is your flag &quot; . $flag;  
+?&gt;
+</code></pre>
+<pre><code class="php">大概有三层判断：
+1`.if($a !== $b &amp; md5($a) === md5($b))&#123;`
+2`.`if (preg_match(&#39;/^1952(.*?)NUAA$/&#39;, $word))&#123;  
+    if(intval($word) === intval(strrev($word)))&#123;``
+3`.if ($hash === md5($flag . $word))`
+</code></pre>
+<h3 id="1-值不相同但md5加密后相同（数组绕过md5强比较）"><a href="#1-值不相同但md5加密后相同（数组绕过md5强比较）" class="headerlink" title="1. 值不相同但md5加密后相同（数组绕过md5强比较）"></a>1. 值不相同但md5加密后相同（数组绕过md5强比较）</h3><ul>
+<li>通过数组类型一致，但值不一致。</li>
+<li>md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</li>
+<li>中间的为什么是&amp;而不是&amp;&amp;。在此题当中都是成立的，详细的说明可以查看<a href=https://www.runoob.com/note/34429>菜鸟教程</a></li>
+</ul>
+<h3 id="2-1952开头NUAA结尾，倒序并interval-后仍相同"><a href="#2-1952开头NUAA结尾，倒序并interval-后仍相同" class="headerlink" title="2.1952开头NUAA结尾，倒序并interval()后仍相同"></a>2.1952开头NUAA结尾，倒序并interval()后仍相同</h3><ul>
+<li>正常进行输入的情况如下： <img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2020.54.27.png"><br>相关定义可以自己去查一下（我懒）</li>
+</ul>
+<p>大概思路: 正序的字符串比较好控制大小，而倒序的感觉有点难办。<br>小trick：科学计数法<br>我们可以通过科学计数法使得正向的字符串经过intval后变为0也就实现了绕过。</p>
+<p>payload:<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2021.05.58.png"></p>
+<p>得到md5值</p>
+<h3 id="3-word置空进行绕过。"><a href="#3-word置空进行绕过。" class="headerlink" title="3.word置空进行绕过。"></a>3.word置空进行绕过。</h3><p>这里就不要想的太复杂哈哈哈哈哈哈哈。还得是小小姐。<br>word参数直接置空并且加上hash就可以得到flag了。</p>
+<p>下班！</p>
+<h2 id="伤身体（ssti"><a href="#伤身体（ssti" class="headerlink" title="伤身体（ssti"></a>伤身体（ssti</h2><p>1azy_fish沉迷于某六字游戏，在他大意的时候，快偷了他的flag！！！</p>
+<h3 id="弱口令登入"><a href="#弱口令登入" class="headerlink" title="弱口令登入"></a>弱口令登入</h3><p>admin:password</p>
+<h3 id="ssti注入"><a href="#ssti注入" class="headerlink" title="ssti注入"></a>ssti注入</h3><p>ssti注入我就大概知道个原理，于是呢就直接工具梭哈啦。<br>打开fenjing直接一把嗦，具体用法自己查一下吧。</p>
+<h2 id="来抽个奖？"><a href="#来抽个奖？" class="headerlink" title="来抽个奖？"></a>来抽个奖？</h2><p>1azy_fish觉得有随机数在，他就不会亏卡，快爆了他，让他血本无归。</p>
+<h4 id="php伪随机数漏洞"><a href="#php伪随机数漏洞" class="headerlink" title="php伪随机数漏洞"></a>php伪随机数漏洞</h4><p>多次刷新发现随机数始终相同，于是猜测肯定使用的同一个种子。漏洞请往下翻翻。</p>
+<h3 id="爆破种子"><a href="#爆破种子" class="headerlink" title="爆破种子"></a>爆破种子</h3><p>爆破种子工具包 <a href=https://github.com/openwall/php_mt_seed>php_mt_seed</a><br>使用教程看看README就行。</p>
+<h3 id="漏洞了解"><a href="#漏洞了解" class="headerlink" title="漏洞了解"></a>漏洞了解</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2021.21.05.png"></p>
+<pre><code class="php">&lt;?php  
+mt_srand(5201314);  
+echo mt_rand().PHP_EOL;  
+echo mt_rand().PHP_EOL;  
+echo mt_rand().PHP_EOL;  
+echo mt_rand().PHP_EOL;  
+?&gt;
+</code></pre>
+<p>可以通过多次实验发现相同种子下，都是相同的数据，相同的顺序。</p>
+<p>下班！</p>
+<h2 id="我不是op！"><a href="#我不是op！" class="headerlink" title="我不是op！"></a>我不是op！</h2><p>1azy_fish说他自己不是op，你可以登录它的管理员账号看看他到底是不是op吗？</p>
+<p>尝试弱口令无果后随便打一个用户名，发现返回包<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.01.55.png"><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.02.06.png"><br>得到token一眼jwt，同时解编码message上面的unicode<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.03.32.png"><br>然后带这个token去&#x2F;protected<br>需要注意的点（这个token是jwt，需要放在cookie里面进行传参）<br>使用GET请求</p>
+<p>构造后的burp请求包：<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.07.12.png"></p>
+<pre><code>GET http://101.42.30.15:8306/protected HTTP/1.1
+Host: 101.42.30.15:8306
+Pragma: no-cache
+Cache-Control: no-cache  
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5666.197 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,\*/\*;q=0.8,application/signed-exchange;v=b3;q=0.7   
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: session=7fa98980-e33f-4e0b-9213-4c1616d16f94.62XYmGmHDaMHpnRNYQEY--rTTK0; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluJyJ9.ATUoxudr6sa0eNyMUQqU155AeGVsuv90_CM-T_WVlKM
+sec-ch-ua-platform: &quot;Windows&quot;
+sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;113&quot;, &quot;Chromium&quot;;v=&quot;113&quot;, &quot;Not=A?Brand&quot;;v=&quot;24&quot; 
+sec-ch-ua-mobile: ?0
+Connection: close
+</code></pre>
+<p>返回包里<br><code>&lt;!--secret_key = &quot;Lazy_fish_Is_op?&quot;--&gt;</code><br>应该就是jwt的密钥了<br>于是直接找个在线jwt网站篡改一下jwt就可以越权到admin了(网站： <a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io/</a>)<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.12.01.png"><br>直接修改111为admin然后得到admin的 jwt<br>带这admin的jwt重新访问即可得到flag<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.13.50.png"></p>
+<p>Shark{1aZyfish_is_0pppppppppp!}</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+                        
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci='e42db5b2db30aa8427df'
+        data-cs='7816ca3ac4bdc1a19bfbb9eab63e0f3db77611af'
+        data-r='g1an123.github.io'
+        data-o='g1an123'
+        data-a='g1an123'
+        data-d=''
+        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="/img/tou.png" height=300 width=300></img>
+                    <p>glan</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                                <dd><a href="https://github.com/g1an123" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                            
+                            
+                                <dd><a href="#不给" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                            
+                            
+                                <dd><a href="#没有" target="_blank"><span
+                                    class=" iconfont icon-stack-overflow"></span></a></dd>
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">10 <p>文章</p></a></li>
+                    <li><a href="/categories">4 <p>分类</p></a></li>
+                    <li><a href="/tags">10 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-number">1.</span> <span class="toc-text">彩蛋</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.</span> <span class="toc-text">敏感路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#F12%E6%9F%A5%E7%9C%8B%E7%BD%91%E9%A1%B5%E6%BA%90%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">F12查看网页源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ez-http"><span class="toc-number">2.</span> <span class="toc-text">Ez_http</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XFF%E5%A4%B4ip%E7%BB%95%E8%BF%87"><span class="toc-number">2.1.</span> <span class="toc-text">XFF头ip绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Referer%E6%9D%A5%E6%BA%90%E7%BB%95%E8%BF%87"><span class="toc-number">2.2.</span> <span class="toc-text">Referer来源绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UA%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.</span> <span class="toc-text">UA绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#view-source"><span class="toc-number">3.</span> <span class="toc-text">view source</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A0%81"><span class="toc-number">3.1.</span> <span class="toc-text">查看源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E6%9F%A5%E8%AF%A2%E5%8F%91%E7%8E%B0%E8%B7%AF%E7%94%B1%E5%8F%8A%E5%8F%82%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">源码查询发现路由及参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ez-eval"><span class="toc-number">4.</span> <span class="toc-text">Ez_eval</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%B1%80%E9%80%81%E6%BA%90%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">开局送源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%E7%BB%95%E8%BF%87"><span class="toc-number">4.2.</span> <span class="toc-text">通配符绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ez-SQL"><span class="toc-number">5.</span> <span class="toc-text">Ez_SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%B7%A5%E5%81%9A%E6%B3%95%EF%BC%9A"><span class="toc-number">5.1.</span> <span class="toc-text">手工做法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%A2%AD%E5%93%88"><span class="toc-number">5.2.</span> <span class="toc-text">工具梭哈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E6%96%AF%E5%93%88%E6%96%AF%E5%93%88%E6%96%AF%EF%BC%88bt"><span class="toc-number">6.</span> <span class="toc-text">哈斯哈斯哈斯（bt</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">弱口令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A0%81-%E4%BC%A0%E5%8F%82"><span class="toc-number">6.2.</span> <span class="toc-text">查看源码+传参</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php%E5%AE%A1%E8%AE%A1"><span class="toc-number">6.3.</span> <span class="toc-text">php审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%80%BC%E4%B8%8D%E7%9B%B8%E5%90%8C%E4%BD%86md5%E5%8A%A0%E5%AF%86%E5%90%8E%E7%9B%B8%E5%90%8C%EF%BC%88%E6%95%B0%E7%BB%84%E7%BB%95%E8%BF%87md5%E5%BC%BA%E6%AF%94%E8%BE%83%EF%BC%89"><span class="toc-number">6.4.</span> <span class="toc-text">1. 值不相同但md5加密后相同（数组绕过md5强比较）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1952%E5%BC%80%E5%A4%B4NUAA%E7%BB%93%E5%B0%BE%EF%BC%8C%E5%80%92%E5%BA%8F%E5%B9%B6interval-%E5%90%8E%E4%BB%8D%E7%9B%B8%E5%90%8C"><span class="toc-number">6.5.</span> <span class="toc-text">2.1952开头NUAA结尾，倒序并interval()后仍相同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-word%E7%BD%AE%E7%A9%BA%E8%BF%9B%E8%A1%8C%E7%BB%95%E8%BF%87%E3%80%82"><span class="toc-number">6.6.</span> <span class="toc-text">3.word置空进行绕过。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A4%E8%BA%AB%E4%BD%93%EF%BC%88ssti"><span class="toc-number">7.</span> <span class="toc-text">伤身体（ssti</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%99%BB%E5%85%A5"><span class="toc-number">7.1.</span> <span class="toc-text">弱口令登入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssti%E6%B3%A8%E5%85%A5"><span class="toc-number">7.2.</span> <span class="toc-text">ssti注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A5%E6%8A%BD%E4%B8%AA%E5%A5%96%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">来抽个奖？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E7%A7%8D%E5%AD%90"><span class="toc-number">8.1.</span> <span class="toc-text">爆破种子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BA%86%E8%A7%A3"><span class="toc-number">8.2.</span> <span class="toc-text">漏洞了解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%B8%8D%E6%98%AFop%EF%BC%81"><span class="toc-number">9.</span> <span class="toc-text">我不是op！</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2023
+        <span class="gradient-text">
+            glan
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.9.4" target="_blank" rel="noopener">v1.4.9.4</a></small>
+        
+        </br>
+        
+        <span class="gradient-text">
+            <a href="https://beian.miit.gov.cn/" title="beian.miit.gov.cn" target="_blank" rel="noopener">beian.miit.gov.cn</a>
+        </span>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+ 
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

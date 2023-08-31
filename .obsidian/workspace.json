@@ -1,0 +1,196 @@
+{
+  "main": {
+    "id": "1414d2de9eec5bb4",
+    "type": "split",
+    "children": [
+      {
+        "id": "4cec702663fcf9bc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f7a711a310a73e28",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/CVE-2023-2317(typora远程命令执行)复现.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b0aa48210360f03c",
+    "type": "split",
+    "children": [
+      {
+        "id": "550f9c7a6dfa4e0a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb992f4e52aab296",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "80178665ffe46b5b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1a9180a2588d2180",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "87fe8117c5cf812e",
+    "type": "split",
+    "children": [
+      {
+        "id": "a501a259521473d4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "db5ccbe6a58725aa",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/CVE-2023-2317(typora远程命令执行)复现.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "10b06312579da115",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "source/_posts/CVE-2023-2317(typora远程命令执行)复现.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9002ed7485c7a44d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "bcdefd3f84517529",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/CVE-2023-2317(typora远程命令执行)复现.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "f7a711a310a73e28",
+  "lastOpenFiles": [
+    "db.json",
+    "public/statics/chengdu.mp3",
+    "public/statics",
+    "public/img/tou.png",
+    "public/img/profile.jpg",
+    "public/img/welcome-cover.jpg",
+    "public/aplayer/yarn.lock",
+    "public/2023/08/22/sharkctf_2023/index.html",
+    "public/2023/08/22/sharkctf_2023",
+    "public/2023/08/20/My-First-Post/index.html",
+    "public/2023/08/20/My-First-Post",
+    "public/2023/08/20/hello-world/index.html",
+    "public/2023/08/20/hello-world",
+    "public/2023/08/24/陇剑杯 2021 misc 日志分析/index.html",
+    "public/img/cover.jpg",
+    "public/img/logo.png",
+    "public/img/logo_icon.png",
+    "public/aplayer/src/assets/volume-up.svg",
+    "public/aplayer/src/assets/volume-down.svg",
+    "public/aplayer/src/assets/volume-off.svg",
+    "public/aplayer/src/assets/skip.svg",
+    "source/_posts/陇剑杯 2021 misc 简单日志分析.md",
+    "source/_posts/陇剑杯 2021 misc 日志分析.md",
+    "source/_posts/陇剑杯 2021 misc webshell.md",
+    "source/_posts/日记.md",
+    "source/_posts/渗透测试入门.md",
+    "source/_posts/CVE-2023-2317(typora远程命令执行)复现.md",
+    "source/_posts/hello-world.md",
+    "source/_posts/My-First-Post.md",
+    "source/_posts/20230830205805.md",
+    "source/_posts/RCE总结.md",
+    "source/_posts/博客更新.md",
+    "source/_posts/sharkctf_2023.md",
+    "source/_posts/test.md",
+    "source/about/index.md",
+    "source/categories/index.md",
+    "source/_posts/test2.md",
+    "source/tags/index.md",
+    "source/about/index~.md",
+    "source/home/index~.md",
+    "source/home/index.md",
+    "source/tags/index~.md",
+    "source/tags/index-1.md",
+    "source/_posts/20230820180641.md"
+  ]
+}

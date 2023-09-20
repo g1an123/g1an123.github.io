@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>glan&#39;s blog</title>
+    <title>Tag: misc - glan&#39;s blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -130,18 +130,19 @@
     <div id="post0" class="else">
         <p class="animated fadeInDown">
             
-            <a href="javascript:;"><b>「 </b>文章<b> 」</b></a>
+            <a href="/categories/ctf"><b>「
+                </b>CTF<b> 」</b></a>
             
-            八月 31, 2023
+            八月 24, 2023
         </p>
         <h3 class="post-title animated fadeInDown">
-            <a href="/2023/08/31/hello-world/" title="Hello World" class="posttitle">Hello World</a></h3>
+            <a href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="陇剑杯 2021 misc 简单日志分析" class="posttitle">陇剑杯 2021 misc 简单日志分析</a></h3>
         
         <p class="post-count animated fadeInDown">
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.5k
+                1.4k
             </span>
             
             
@@ -154,11 +155,16 @@
         </p>
         
         
+        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li></ul>
+        
         <div class="md-content animated fadeIn">
             
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems...</p>
+            <h2 id="陇剑杯-2021-简单日志分析（问1）"><a href="#陇剑杯-2021-简单日志分析（问1）" class="headerlink" title="陇剑杯 2021 简单日志分析（问1）"></a>陇剑杯 2021 简单日志分析（问1）</h2><pre><code>题目描述：
+
+某应用程序被攻击，请分析日志后作答：
+黑客攻击的参数是______。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&#123;&#125...</code></pre>
             
-            <span class="read-more"><a href="/2023/08/31/hello-world/" title="查看全文" class="posttitle">查看全文</a>
+            <span class="read-more"><a href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="查看全文" class="posttitle">查看全文</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
     </div>
@@ -179,111 +185,6 @@
 
     <div id="primary">
         
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="javascript:;"><b>「 </b>文章<b> 」</b></a>
-            
-            八月 30, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/30/CVE-2023-2317(typora%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C)%E5%A4%8D%E7%8E%B0/" title="CVE-2023-2317(typora远程命令执行)复现" class="posttitle">CVE-2023-2317(typora远程命令执行)复现</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        8k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        7 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%A4%8D%E7%8E%B0/" rel="tag">复现</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <h2 id="原文在这"><a href="#原文在这" class="headerlink" title="原文在这"></a><a target="_blank" rel="noopener" href="https://starlabs.sg/advisories/23/23-2317/">原文在这</a></h2><blockquote>
-<p>以下为机翻，发布用以个人学习方便之需。<br>此漏洞在钓鱼、反制等领域都有一定意义。</p>
-</blockquote>
-<h2 id="产品概述："><a href="#产品概述：" class="headerlink" title="产品概述："></a>产品概述：</h2><p>Typora 是一款流行的跨平台 Markdown 编辑器，允许用户创建和编辑具有实时预览功能的 Markdown 文件。它支持各种格式选项，例如标题、粗体、斜体等。Typora 还允许用户将 Markdown 文件导出为不同的格式，例如 PDF、HTML 和 Word。</p>
-<p>适用于 Windows&#x2F;Linux 的 Typora 基于 Electron 构建，该框架使其能够在各种操作系统上无...</p>
-            
-            <span class="read-more"><a href="/2023/08/30/CVE-2023-2317(typora%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C)%E5%A4%8D%E7%8E%B0/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/ctf">
-                  <b>「 </b>CTF<b> 」</b>
-                </a>
-            
-            八月 24, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="陇剑杯 2021 misc 简单日志分析" class="posttitle">陇剑杯 2021 misc 简单日志分析</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.4k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <h2 id="陇剑杯-2021-简单日志分析（问1）"><a href="#陇剑杯-2021-简单日志分析（问1）" class="headerlink" title="陇剑杯 2021 简单日志分析（问1）"></a>陇剑杯 2021 简单日志分析（问1）</h2><pre><code>题目描述：
-
-某应用程序被攻击，请分析日志后作答：
-黑客攻击的参数是______。（如有字母请全部使用小写）。得到的flag请使用NSSCTF&#123;&#125;格式提交。
-</code></pre>
-<p>既然问的是参数，而且日志中基本都是GET请求，那么我们直接搜索 <code>=</code> 看看</p>
-<p></p>
-<p>得到user参数。</p>
-<h2 id="陇剑杯-2021-简单日志分析（问2）"><a href="#陇剑杯-2021-简单日志分析（问2）" class="headerlink" title="陇剑杯 2021 简单日志分析（问2）"></a>陇剑杯 2021 简单日志分析（问2）</h2><pre><code>题目描述：
-
-某应用程序被攻击，请分析日志后作答：
-黑客查看的秘密文件的绝对路径是_____________。得到的flag请使用NSSCTF&#123...</code></pre>
-            
-            <span class="read-more"><a href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E7%AE%80%E5%8D%95%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
 <div class="post" id="post">
     <div class="post-cover animated fadeIn" style="
             background-image:
@@ -392,261 +293,11 @@
 </div>
 
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/ctf">
-                  <b>「 </b>CTF<b> 」</b>
-                </a>
-            
-            八月 22, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/22/sharkctf_2023/" title="sharkctf_2023" class="posttitle">sharkctf_2023</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        10k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        9 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/web/" rel="tag">web</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/writeup/" rel="tag">writeup</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p><code>暑假事情有点多，没啥时间写，只写完了web题，写篇wp水水博客。</code></p>
-<hr>
-<h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>1azy_fish加了彩蛋，找一找？不用爆破（把服务器日坏了就不好玩了</p>
-<h3 id="敏感路径"><a href="#敏感路径" class="headerlink" title="敏感路径"></a>敏感路径</h3><p>这题刚开始看以为是F12题，一直没找到，后来翻插件发现有敏感目录 &#x2F;goat。<br><br>推荐一下这个插件：findsomething（尊嘟很好用）</p>
-<h3 id="F12查看网页源码"><a href="#F12查看网页源码" class="headerlink" title="F12查看网页源码"></a>F12查看网页源码</h3><p>直接拼接就是一个F12题了，F12查看源码得到flag<br></p>
-<h2 id="Ez-http"><a href="#Ez-http" class="headerlink" title="Ez_http"></a>Ez_http</h2><p>VidocQwQ说http好简单，我们一起学习吧。</p>
-<p></p>
-<h3 id="XFF头ip绕过"><a href="#XFF头ip绕过" class="headerlink" title="XFF头ip绕过"></a>XFF头ip绕过</h3><p>使用hackbar进行操作添加XFF头。<br></p>
-...
-            
-            <span class="read-more"><a href="/2023/08/22/sharkctf_2023/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="javascript:;"><b>「 </b>文章<b> 」</b></a>
-            
-            八月 22, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/22/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0/" title="博客更新" class="posttitle">博客更新</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        75
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>今天早上更新了搜索栏和留言板。初步更新基本完成，后面就要开始更新我的水文啦。</p>
-<p>欢迎大家留言，指导指导小菜鸡哈（orz）。</p>
-
-            
-            <span class="read-more"><a href="/2023/08/22/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Diary">
-                  <b>「 </b>DIARY<b> 」</b>
-                </a>
-            
-            八月 22, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/22/%E6%97%A5%E8%AE%B0/" title="日记" class="posttitle">日记</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        39
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>今天事情比较多，今日战绩：图床搭建完成。</p>
-<p>下班！</p>
-
-            
-            <span class="read-more"><a href="/2023/08/22/%E6%97%A5%E8%AE%B0/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Diary">
-                  <b>「 </b>DIARY<b> 」</b>
-                </a>
-            
-            八月 20, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/20/My-First-Post/" title="My First Post" class="posttitle">My First Post</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        113
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/hello/" rel="tag">hello</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>Welcome to my blog.</p>
-<p>搭建了一天，终于上线了。</p>
-<p>暑假开始的时候有一个Plan，完成了个P,因为lan。</p>
-<p>后面会随缘更新，更新内容也不确定。凑合着看吧。</p>
-
-            
-            <span class="read-more"><a href="/2023/08/20/My-First-Post/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/渗透测试">
-                  <b>「 </b>渗透测试<b> 」</b>
-                </a>
-            
-            八月 20, 2023
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/" title="渗透测试入门" class="posttitle">渗透测试入门</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        5k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        5 mins.
-                    </span>
-                
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>#入门</p>
-<p>练习时长：八周（3又五分之一坤周）</p>
-<h1 id="web开发入门（两周）"><a href="#web开发入门（两周）" class="headerlink" title="web开发入门（两周）"></a>web开发入门（两周）</h1><p><strong>前端语言</strong>:  HTML+CSS+javascript<br>建议时长： 三天 （JS要求高，dom树看懂）</p>
-<p><strong>脚本语言</strong> : python+网络基础和HTTP协议<br>建议时长：七天 </p>
-<p><strong>后端语言</strong>:PHP+SQL+MySQL数据库<br>建议时长：三天（第一门后端语言建议php，因为比较简单，当然你也可以直接入手其他的语言java，go之类的）</p>
-<p><strong>学习方式</strong>： 菜鸟教程进行速通上面的语言学习。</p>
-<p><strong>学习任务</strong>：注册登录页面和登录成功展示静态百度页面</p>
-<h1 id="web渗透入门"><a href="#web渗透入门" class="headerlink" title="web渗透入门"></a>web渗透入门</h1><h2 id="一、信息收集（三天）"><a href="#一、信息收集（三天）" class="headerlink" title="一、信息收集（三天）"></a>一、信...</h2>
-            
-            <span class="read-more"><a href="/2023/08/20/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
     </div>
     
 </div>
 <div id="preview"></div>
+
 
     <div id="back-to-top" class="animated fadeIn faster">
         <div class="flow"></div>

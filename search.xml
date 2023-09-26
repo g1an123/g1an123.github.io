@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>市赛决赛赛后复盘</title>
+      <link href="/2023/09/26/%E5%B8%82%E8%B5%9B%E5%86%B3%E8%B5%9B%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%9B%98/"/>
+      <url>/2023/09/26/%E5%B8%82%E8%B5%9B%E5%86%B3%E8%B5%9B%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%9B%98/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>这个月事情有那么亿丢丢多，时间也比较久了，难免有些失真，请大家理解。后面想起来啥再进行修改。希望对于下一次比赛有些许帮助</p></blockquote><p>本次赛制采用的是：DAWD+应急响应实战赛</p><h2 id="关于DAWD"><a href="#关于DAWD" class="headerlink" title="关于DAWD:"></a>关于DAWD:</h2><p><strong>规则参考</strong>： <a href="https://datacon.qianxin.com/competition/competitions/70/introduction">https://datacon.qianxin.com/competition/competitions/70/introduction</a></p><p><strong>简单来说</strong>：每道题会给你一套源码进行代码审计，找出漏洞点进行exp与patch包的编写，然后上传裁判服务器，裁判服务器会使用你提供的exp与patch包进行攻击与防御。</p><p>同时会给你一台操作机供战队存放exp与patch包。（这里最好使用finalshell这类方便的工具）</p><h3 id="知识储备："><a href="#知识储备：" class="headerlink" title="知识储备："></a>知识储备：</h3><ul><li>常见漏洞的exp编写。</li><li>常见漏洞的patch包编写。</li><li>混淆webshell的解密</li><li>快速代码审计</li><li>。。。</li></ul><h3 id="资源准备："><a href="#资源准备：" class="headerlink" title="资源准备："></a>资源准备：</h3><ul><li>漏洞库：这次比赛就是因为没有找到可以直接利用的漏洞点而失利，而且稳固可靠的来源会让你在多轮战当中拿下巨大的分差。</li><li>常见的批量化利用脚本案例：直接套模版可以节省很大一部分编码的时间。</li><li>webshell查杀工具：D盾，河马等</li><li>常见漏洞的waf或者patch包</li><li>手速</li><li>。。。</li></ul><h2 id="关于应急响应"><a href="#关于应急响应" class="headerlink" title="关于应急响应"></a>关于应急响应</h2><p><strong>内容包括相对广泛</strong>：流量分析，入侵排查，病毒分析，溯源等内容。</p><p><strong>概述</strong>：这次的比赛就直接描述了一段很长的故事，给了一个拓扑图，通过拓扑图可以通过网页连接靶机，大概有七八台靶机分布，每台靶机需要完成不同的任务，本次比赛有20个小题。</p><ul><li><strong>流量分析</strong>：因为在赛方的实训平台使用网页直接连接的靶机，还是xp系统，流量包和wireshark都在远端。。。过滤一个规则就要等个一两分钟。</li><li><strong>入侵排查</strong>：通过日志、可疑文件等寻找入侵的痕迹，找出木马、病毒、webshell等</li><li><strong>病毒分析</strong>： 根据生成的加密勒索文件找到病毒，找病毒问文件名字啥的。</li><li><strong>溯源</strong>：分析攻击服务器地址等</li></ul><h3 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h3><ul><li>webshell查杀工具</li><li>火绒等查杀病毒等工具，有些环境火绒装不上，得找其他办法（我目前也不知道）</li><li>入侵痕迹检测工具和脚本。</li><li>还有的想起来再补充</li></ul><h2 id="感受与心得："><a href="#感受与心得：" class="headerlink" title="感受与心得："></a>感受与心得：</h2><ul><li><p>个人建议每个队起码配备两个web手（当然不一定是web手，主要是为了分担压力，不然忙不过来）。</p></li><li><p>还是太菜了，很多东西都没学过，应急响应本来想直接上传GScan脚本一键梭哈看看，但是不知道为啥，挂载硬盘一直出问题就没成功，后来也不知道因为写了啥命令导致机子直接崩溃了😭，时间也不剩多少了就直接摆烂了。</p></li><li><p><strong>分数问题</strong>：现在我也不清楚具体是怎么算分的，比赛的时候DAWD是以10000分为基准分，而应急响应来说总分就330分，所以给我一种莫名的错觉认为拿下DAWD就可以下班了。。。后来DAWD我们队第十，应急响应十几名，但是最终成绩在二十多，只拿了三等奖。赛后听到一个队反馈说DAWD第二，应急响应130多分，但是最后却没有奖（我们队200分），这么一算应急响应确实占比相当高。</p></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+            <tag> 复盘 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>博客复活记</title>
       <link href="/2023/09/21/%E5%8D%9A%E5%AE%A2%E5%A4%8D%E6%B4%BB%E8%AE%B0/"/>
       <url>/2023/09/21/%E5%8D%9A%E5%AE%A2%E5%A4%8D%E6%B4%BB%E8%AE%B0/</url>
@@ -216,9 +237,9 @@
       
         <tags>
             
-            <tag> blog </tag>
-            
             <tag> hello </tag>
+            
+            <tag> blog </tag>
             
         </tags>
       

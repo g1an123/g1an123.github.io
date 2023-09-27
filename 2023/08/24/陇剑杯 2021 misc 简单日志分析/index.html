@@ -129,11 +129,11 @@
                 </span>
                 
                 
-                
-                <span id="busuanzi_container_page_pv">
+                <span id="/2023/08/24/陇剑杯 2021 misc 简单日志分析/" class="leancloud_visitors" data-flag-title="陇剑杯 2021 misc 简单日志分析">
                     <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                    <span id="busuanzi_value_page_pv">0</span>
+                    <span class="leancloud-visitors-count">1000000</span>
                 </span>
+                
                 
             </p>
             
@@ -203,19 +203,7 @@
                         
             
             
-    <div id='gitalk-container' class="comment link"
-        data-ae='false'
-        data-ci='e42db5b2db30aa8427df'
-        data-cs='7816ca3ac4bdc1a19bfbb9eab63e0f3db77611af'
-        data-r='g1an123.github.io'
-        data-o='g1an123'
-        data-a='g1an123'
-        data-d=''
-        data-p='https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
-    >留言</div>
-
-
-            
+            <div id="vcomments"></div>
             
         </div>
         <div class="sidebar">
@@ -359,10 +347,6 @@
 
 
  
-<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
- 
-<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
-  
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/js/plugin.js"></script>
 <script src="/js/obsidian.js"></script>
@@ -482,6 +466,38 @@
   }
 </script>
 
+ 
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var valine = new Valine();
+
+  function initValine(path) {
+    if (!path) path = window.location.pathname;
+    let language = 'zh-CN';
+    if (!language) {
+      language = 'en';
+    } else {
+      language = language.toLowerCase();
+    }
+    valine.init({
+      el: '#vcomments',
+      appId: 'bhLS1VLSliBdb17Nb2GWIiGv-gzGzoHsz',
+      appKey: 'evXh0IqqkwxvSecXotjoPd3G',
+      notify: 'false',
+      verify: 'false',
+      avatar: 'mp',
+      placeholder: 'Leave your throughs behind~',
+      visitor: 'true',
+      path: path,
+      lang: language,
+    });
+  }
+
+  $(document).ready(function () {
+    initValine();
+  });
+</script>
 
 
 

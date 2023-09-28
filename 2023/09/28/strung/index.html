@@ -5,15 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>陇剑杯 2021 misc 日志分析 - glan&#39;s blog</title>
+    <title> - glan&#39;s blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="glan Obsidian hack 网安 ctf,"> 
-    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,陇剑杯 2021 日志分析（问1）题目描述：
-
-单位某应用程序被攻击，请分析日志，进行作答：
-网络存在源码泄漏，源码文件名是_____________。(请提交带有文件后缀的文件名，例如x.txt),"> 
+    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,aeskey:XN5ETRnQzdqDK6Jz0limQVRu3o8lhA0b
+"> 
     <meta name="author" content="glan"> 
     <link rel="alternative" href="atom.xml" title="glan&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/tou.png"> 
@@ -77,7 +75,7 @@
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/tou.png" alt="" data-url="https://g1an123.github.io">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">陇剑杯 2021 misc 日志分析</h3>
+        <h3 class="subtitle"></h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -107,29 +105,28 @@
         <div class="else">
             <p class="animated fadeInDown">
                 
-                <a href="/categories/ctf"><b>「
-                    </b>CTF<b> 」</b></a>
+                <a href="javascript:;"><b>「 </b>文章<b> 」</b></a>
                 
-                八月 24, 2023
+                九月 28, 2023
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2023/08/24/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="陇剑杯 2021 misc 日志分析" class="">陇剑杯 2021 misc 日志分析</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2023/09/28/strung/" title="Untitled" class="">Untitled</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    2k
+                    47
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    2 mins.
+                    1 mins.
                 </span>
                 
                 
-                <span id="/2023/08/24/陇剑杯 2021 misc 日志分析/" class="leancloud_visitors" data-flag-title="陇剑杯 2021 misc 日志分析">
+                <span id="/2023/09/28/strung/" class="leancloud_visitors" data-flag-title="">
                     <b class="iconfont icon-read"></b> <i>阅读次数</i>
                     <span class="leancloud-visitors-count">1000000</span>
                 </span>
@@ -137,8 +134,6 @@
                 
             </p>
             
-            
-            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li></ul>
             
         </div>
     </div>
@@ -159,26 +154,7 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h2 id="陇剑杯-2021-日志分析（问1）"><a href="#陇剑杯-2021-日志分析（问1）" class="headerlink" title="陇剑杯 2021 日志分析（问1）"></a>陇剑杯 2021 日志分析（问1）</h2><pre><code>题目描述：
-
-单位某应用程序被攻击，请分析日志，进行作答：
-网络存在源码泄漏，源码文件名是_____________。(请提交带有文件后缀的文件名，例如x.txt)。得到的flag请使用NSSCTF&#123;&#125;格式提交。
-</code></pre>
-<p>打开日志文件，不知道用哪个软件比较好分析，还请各位大佬指点。<br>我直接用vscode打开看看<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2012.39.08.png"><br>发现主要信息集中于请求路径和状态码。<br>大部分都是404，直接全局搜索200看看</p>
-<p>大概下半段就可以看到请求<a target="_blank" rel="noopener" href="http://www.zip时为200/">www.zip时为200</a>.<br>下班！</p>
-<h2 id="陇剑杯-2021-日志分析（问2）"><a href="#陇剑杯-2021-日志分析（问2）" class="headerlink" title="陇剑杯 2021 日志分析（问2）"></a>陇剑杯 2021 日志分析（问2）</h2><pre><code>题目描述：
-
-单位某应用程序被攻击，请分析日志，进行作答：
-分析攻击流量，黑客往/tmp目录写入一个文件，文件名为_____________。得到的flag请使用NSSCTF&#123;&#125;格式提交。
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-08-24%2012.46.43.png"><br>全局搜索一下tmp，发现有<br><code>/?filename=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Ftmp%2Fsess_car&amp;content=func%7CN%3Bfiles%7Ca%3A2%3A%7Bs%3A8%3A%22filename%22%3Bs%3A16%3A%22.%2Ffiles%2Ffilename%22%3Bs%3A20%3A%22call_user_func_array%22%3Bs%3A28%3A%22.%2Ffiles%2Fcall_user_func_array%22%3B%7Dpaths%7Ca%3A1%3A%7Bs%3A5%3A%22%2Fflag%22%3Bs%3A13%3A%22SplFileObject%22%3B%7D</code><br>解一下码好看一点。<br><code>/?filename=../../../../../../../../../../../../../../../../../tmp/sess_car&amp;content=func|N;files|a:2:&#123;s:8:&quot;filename&quot;;s:16:&quot;./files/filename&quot;;s:20:&quot;call_user_func_array&quot;;s:28:&quot;./files/call_user_func_array&quot;;&#125;paths|a:1:&#123;s:5:&quot;/flag&quot;;s:13:&quot;SplFileObject&quot;;&#125;</code></p>
-<p>得到sess_car.</p>
-<h2 id="陇剑杯-2021-日志分析（问3）"><a href="#陇剑杯-2021-日志分析（问3）" class="headerlink" title="陇剑杯 2021 日志分析（问3）"></a>陇剑杯 2021 日志分析（问3）</h2><pre><code>题目描述：
-
-单位某应用程序被攻击，请分析日志，进行作答：
-分析攻击流量，黑客使用的是______类读取了秘密文件。得到的flag请使用NSSCTF&#123;&#125;格式提交。
-</code></pre>
-<p>上一题中解码出来的payload就能看出时SplFileObject类进行读取。</p>
+            <p>aeskey:XN5ETRnQzdqDK6Jz0limQVRu3o8lhA0b</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -232,13 +208,6 @@
             </div>
             
             
-            
-            <div class="box sticky animated fadeInRight faster">
-                <div id="toc" class="subbox">
-                    <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%87%E5%89%91%E6%9D%AF-2021-%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E9%97%AE1%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">陇剑杯 2021 日志分析（问1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%87%E5%89%91%E6%9D%AF-2021-%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E9%97%AE2%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">陇剑杯 2021 日志分析（问2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%87%E5%89%91%E6%9D%AF-2021-%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E9%97%AE3%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">陇剑杯 2021 日志分析（问3）</span></a></li></ol>
-                </div>
-            </div>
             
             
         </div>

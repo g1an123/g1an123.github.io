@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>NEWSTARCTF 第一周misc--wp</title>
+      <link href="/2023/10/07/NEWSTARCTF%20%E7%AC%AC%E4%B8%80%E5%91%A8misc--wp/"/>
+      <url>/2023/10/07/NEWSTARCTF%20%E7%AC%AC%E4%B8%80%E5%91%A8misc--wp/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CyberChef’s-Secret"><a href="#CyberChef’s-Secret" class="headerlink" title="CyberChef’s Secret"></a>CyberChef’s Secret</h2><p>base套,建议用随波逐流工具梭哈</p><h2 id="机密图片"><a href="#机密图片" class="headerlink" title="机密图片"></a>机密图片</h2><p>zsteg直接梭哈<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-09-26%2014.07.20.png"></p><h2 id="流量！鲨鱼！"><a href="#流量！鲨鱼！" class="headerlink" title="流量！鲨鱼！"></a>流量！鲨鱼！</h2><p>出来的流量包大部分都是404<br>于是直接筛选200响应码的流量一个个看就行<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-09-26%2014.11.34.png"><br>得到一个base64加密后的，解密就是flag</p><h2 id="压缩包们"><a href="#压缩包们" class="headerlink" title="压缩包们"></a>压缩包们</h2><p>直接binwalk 或者foremost分离一下得到压缩包。<br>直接上爆破，我也不是很清楚为啥fcrackzip用不了<br>我最后用的是Ziperello<br><a href="https://pan.baidu.com/s/1z9b_NWOjQvGWmTRn9H5vBQ">https://pan.baidu.com/s/1z9b_NWOjQvGWmTRn9H5vBQ</a><br>密码：qyqx</p><p>后面就按照工具走就行了，密码是232311<br>就拿到flag了，如果拿到密码解出来的flag文件为空，那可能就是分离的时候有问题，换一个分离就好。</p><h2 id="空白格"><a href="#空白格" class="headerlink" title="空白格"></a>空白格</h2><p>了解snow隐写，在线网站一把嗦。<br><a href="https://vii5ard.github.io/whitespace/">https://vii5ard.github.io/whitespace/</a></p><h2 id="隐秘的眼睛"><a href="#隐秘的眼睛" class="headerlink" title="隐秘的眼睛"></a>隐秘的眼睛</h2><p>我当时也不会，直接搜 eye 隐写，出来了 <img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/%E6%88%AA%E5%B1%8F2023-09-26%2014.28.35.png">这个软件，于是直接下载一把嗦。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ctf </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> writeup </tag>
+            
+            <tag> misc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>日记本</title>
       <link href="/2023/09/27/%E6%97%A5%E8%AE%B0%E6%9C%AC/"/>
       <url>/2023/09/27/%E6%97%A5%E8%AE%B0%E6%9C%AC/</url>
@@ -122,9 +149,9 @@
       
         <tags>
             
-            <tag> 日志分析 </tag>
-            
             <tag> misc </tag>
+            
+            <tag> 日志分析 </tag>
             
         </tags>
       
@@ -151,9 +178,9 @@
       
         <tags>
             
-            <tag> 日志分析 </tag>
-            
             <tag> misc </tag>
+            
+            <tag> 日志分析 </tag>
             
         </tags>
       
@@ -180,9 +207,9 @@
       
         <tags>
             
-            <tag> 流量分析 </tag>
-            
             <tag> misc </tag>
+            
+            <tag> 流量分析 </tag>
             
         </tags>
       

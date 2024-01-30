@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>无公网服务器弹shell解决方案</title>
+      <link href="/2024/01/30/%E6%97%A0%E5%85%AC%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%B9shell%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <url>/2024/01/30/%E6%97%A0%E5%85%AC%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%B9shell%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<pre><code>最近vps过期了，打比赛和渗透的时候突然要用就很不方便。</code></pre><h2 id="一：现买"><a href="#一：现买" class="headerlink" title="一：现买"></a>一：现买</h2><p>但是有可能商家会跑路。而且一下子买一个月，后面还不用就很可惜。</p><h2 id="二：Hello-CTF-Shell"><a href="#二：Hello-CTF-Shell" class="headerlink" title="二：Hello_CTF-Shell"></a>二：Hello_CTF-Shell</h2><p><strong>简介</strong>：合法反弹shell一站式最廉价解决方案！！！！（绑腾讯云服务器，加一下snapshot方便一些）<br><a href="https://github.com/ProbiusOfficial/Hello_CTF-Shell?tab=readme-ov-file">https://github.com/ProbiusOfficial/Hello_CTF-Shell?tab=readme-ov-file</a></p><h2 id="三：SakuraFrp"><a href="#三：SakuraFrp" class="headerlink" title="三：SakuraFrp"></a>三：SakuraFrp</h2><p><strong>简介</strong>：用来反弹shell和简单的渗透基本够用。主要是免费（一块钱实名认证费，不能拿来干坏事了🥹）。<br><strong>适合人群</strong>：长期不用，时不时用一下，或者有些工具不方便在服务器上装的。<br><strong>教程</strong>：<br><a href="https://jlan.darkflow.top/posts/23df454a.html">https://jlan.darkflow.top/posts/23df454a.html</a></p><h2 id="其他也许有用："><a href="#其他也许有用：" class="headerlink" title="其他也许有用："></a>其他也许有用：</h2><p>CTF比赛中，一键将本地运行的EXP反弹到VPS端口<br><a href="https://blog.chara.pub/2023/05/02/ctf-publish-port-with-frp/">https://blog.chara.pub/2023/05/02/ctf-publish-port-with-frp/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂七杂八 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tips </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>陇剑杯 2021 misc jwt</title>
       <link href="/2023/10/08/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20jwt/"/>
       <url>/2023/10/08/%E9%99%87%E5%89%91%E6%9D%AF%202021%20misc%20jwt/</url>
@@ -364,6 +389,37 @@
             <tag> 渗透测试 </tag>
             
             <tag> 入门 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>FSCTF2023出题笔记</title>
+      <link href="/2023/08/20/FSCTF2023%E5%87%BA%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/08/20/FSCTF2023%E5%87%BA%E9%A2%98%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+          <category> ctf </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> writeup </tag>
+            
+            <tag> misc </tag>
+            
+            <tag> web </tag>
             
         </tags>
       

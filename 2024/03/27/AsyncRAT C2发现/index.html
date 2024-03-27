@@ -10,8 +10,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="glan Obsidian hack 网安 ctf,"> 
-    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,碎碎念上学期参与RAT对抗课题研究。第一次接触APT狩猎，完全不知道从何下手，感谢老师、学长们的帮助。
-在对于AsyncRAT 外层TLS(ECDHE)流量的解密上，尝试了中间人攻击等方法，但还是因,"> 
+    <meta name="description" content="ctf 个人博客 glan blog hack the world 个人成长日记,
+Github项目地址： https://github.com/g1an123/AsyncRAT_C2_Search
+
+碎碎念上学期参与RAT对抗课题研究。第一次接触APT狩猎，完全不知道从何下手，,"> 
     <meta name="author" content="glan"> 
     <link rel="alternative" href="atom.xml" title="glan&#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/tou.png"> 
@@ -117,7 +119,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    5.4k
+                    5.6k
                 </span>
                 
                 
@@ -157,7 +159,10 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h2 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h2><p>上学期参与RAT对抗课题研究。第一次接触APT狩猎，完全不知道从何下手，感谢老师、学长们的帮助。</p>
+            <blockquote>
+<p>Github项目地址： <a target="_blank" rel="noopener" href="https://github.com/g1an123/AsyncRAT_C2_Search">https://github.com/g1an123/AsyncRAT_C2_Search</a></p>
+</blockquote>
+<h2 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h2><p>上学期参与RAT对抗课题研究。第一次接触APT狩猎，完全不知道从何下手，感谢老师、学长们的帮助。</p>
 <p>在对于AsyncRAT 外层TLS(ECDHE)流量的解密上，尝试了中间人攻击等方法，但还是因为比赛、学业上的事情搁置了很久。</p>
 <p>直到大年初二，躺在床上刷先知社区偶然发现T0daySeeker师傅的文章，师傅说用win7就可以解决流量解密的问题🤯（当然涉及到加密套件的问题，建议看看原文），【也提醒了我还有个项目没做完（doge）】。</p>
 <p>后来熬了两个晚上终于把脚本搞定了（为什么是晚上呢，因为白天要出去玩🐶）。<br>按照正常的故事情节，第三天本来是要跟老师对进度，但是呢，好巧不巧，电脑💻屏幕被砸碎了😭（让我本就不多的压岁钱🧧更薄了）。于是磨磨蹭蹭就开学了。</p>
@@ -169,18 +174,18 @@
 <p>AsyncRAT 是 2019 年发布的开源远程访问工具，可被用作远程访问特洛伊（RAT）。攻击过程包括通过恶意钓鱼网页传递 JavaScript 文件，利用多层混淆和反分析技术。攻击者还灵活使用反沙箱技术，通过计算受害者虚拟机概率，巧妙规遍各个受害者，成功逃避检测。最终，脚本执行下载 AsyncRAT 客户端。</p>
 <p>总体而言，这场攻击呈现出精心策划、持续时间长、具有高度混淆和反分析技术的异步远程访问工具活动。攻击者通过选择特定目标、采用反沙箱技术和使用动态域名生成器，成功地更新网络基础设施，从而有效地逃避了检测。</p>
 <p>copy from 微步 哈哈哈哈</p>
-<h2 id="检测方法"><a href="#检测方法" class="headerlink" title="检测方法"></a>检测方法</h2><h3 id="TLS证书"><a href="#TLS证书" class="headerlink" title="TLS证书"></a>TLS证书</h3><pre><code>优：命中率100%，也是各大搜索引擎最常用的。
-缺：收录范围窄，有经验的apt组织在使用前都会修改证书名。
-</code></pre>
+<h2 id="检测方法"><a href="#检测方法" class="headerlink" title="检测方法"></a>检测方法</h2><h3 id="TLS证书"><a href="#TLS证书" class="headerlink" title="TLS证书"></a>TLS证书</h3><blockquote>
+<p>优：命中率100%，也是各大搜索引擎最常用的。<br>缺：收录范围窄，有经验的apt组织在使用前都会修改证书名。</p>
+</blockquote>
 <p><strong>关于TLS证书的选择：</strong><br>建立连接使用的证书和密钥均从win7主机生成的p12证书提取。win7主机下通信加密套件默认选择生成的<code>TLS_RSA_WITH_AES_128_CBC_SHA</code> 而非具有前向安全的<code>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</code>（加密套件的优先级可以调整）,  且其生成的p12证书没有密码保护，直接提取私钥，规避证书格式引起的问题。</p>
 <p>以fofa为例，进行了以下验证。（实验日期3月2日）</p>
 <h4 id="1-收录语法测试"><a href="#1-收录语法测试" class="headerlink" title="1. 收录语法测试"></a>1. 收录语法测试</h4><ol>
 <li>fofa规则<code>app=&quot;AsyncRAT&quot;</code>数据量与<code>cert.issuer=&quot;AsyncRAT&quot;</code>一致，共1,682条，811条ip。</li>
 <li>反向搜索一致<code>app=&quot;AsyncRAT&quot; &amp;&amp; cert.issuer!=&quot;AsyncRAT&quot;</code>数据量0条</li>
 </ol>
-<h4 id="2-服务器收录方案验证"><a href="#2-服务器收录方案验证" class="headerlink" title="2. 服务器收录方案验证"></a>2. 服务器收录方案验证</h4><pre><code>用自己的服务器配置了以下AsyncRAT服务进行验证。
-验证结果：fofa仅通过是否AsyncRAT字样进行确定，没有脚本表现好。
-</code></pre>
+<h4 id="2-服务器收录方案验证"><a href="#2-服务器收录方案验证" class="headerlink" title="2. 服务器收录方案验证"></a>2. 服务器收录方案验证</h4><blockquote>
+<p>用自己的服务器配置了以下AsyncRAT服务进行验证。<br>验证结果：fofa仅通过是否AsyncRAT字样进行确定，没有脚本表现好。</p>
+</blockquote>
 <p>IP：111.92.241.26</p>
 <ul>
 <li>4404部署0.5.3版本正常证书名</li>
@@ -189,15 +194,18 @@
 <li>9909 部署0.5.8HackerC2 Server</li>
 </ul>
 <p><strong>验证语句</strong>：</p>
-<pre><code>app=&quot;AsyncRAT&quot; &amp;&amp; ip=&quot;111.92.241.26&quot;
-</code></pre>
+<blockquote>
+<p>app&#x3D;”AsyncRAT” &amp;&amp; ip&#x3D;”111.92.241.26”</p>
+</blockquote>
 <p><strong>fofa验证结果</strong>：8808收录，而9909通过修改证书名，躲过了fofa的特征搜索。<br>4404收录，而5505通过修改证书名，躲过了fofa的特征搜索。<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271225249.png"><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271225017.png"><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271225015.png"><br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271226695.png"><br><strong>服务器部署截图</strong>：<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271226962.png"><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271227888.png"></p>
-<h3 id="Ping包"><a href="#Ping包" class="headerlink" title="Ping包"></a>Ping包</h3><pre><code>优：稳定且准确率高
-</code></pre>
+<h3 id="Ping包"><a href="#Ping包" class="headerlink" title="Ping包"></a>Ping包</h3><blockquote>
+<p>优：稳定且准确率高</p>
+</blockquote>
 <p>通过流量分析提取出AsyncRAT的ping包 重放进行特征识别，由于高版本对流量进行了gzip加密，所以高低版本需要分别发包验证。</p>
 <p>client发送信息代码部分<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271227449.png"><br> Server服务端收到结果返回信息代码部分<br><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403271228960.png"></p>
-<h3 id="JARM指纹"><a href="#JARM指纹" class="headerlink" title="JARM指纹"></a>JARM指纹</h3><pre><code>优：用来做辅助验证挺不错的
-</code></pre>
+<h3 id="JARM指纹"><a href="#JARM指纹" class="headerlink" title="JARM指纹"></a>JARM指纹</h3><blockquote>
+<p>优：用来做辅助验证挺不错的</p>
+</blockquote>
 <p>用JA3S 也可以，需要注意的是高低版本指纹也不一致。</p>
 <h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p><strong>结果对比</strong>：fofa:1682条, 脚本:220条。</p>
 <pre><code>猜测1482条数据的AsyncRAT 服务已经下线。
@@ -213,13 +221,13 @@
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
 <li>检测单个端口：</li>
 </ol>
-<pre><code class="python">python3 AsyncRAT_C2_Seearch.py host port 
+<pre><code class="python">python3 AsyncRAT_C2_Seearch.py  host  port
 </code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/g1an123/blogimage@main/202403262215797.png"></p>
 <ol start="2">
 <li>公网检测、ip、ip段检测，查看<code>C2公网探测.py</code></li>
 </ol>
-<pre><code># scan_ip_range(&quot;186.137.33.1&quot;, &quot;C&quot;) # 扫描ip段，可指定C B段  
+<pre><code class="text"># scan_ip_range(&quot;186.137.33.1&quot;, &quot;C&quot;) # 扫描ip段，可指定C B段  
 # ip_scan(&quot;218.204.179.10&quot;)          # 扫描单个ip  
 # ip_scan(&quot;161.97.151.222&quot;,7788)     # 扫描单个端口  
 # process_target_csv(&quot;target1.csv&quot;)    # 扫描文件  
